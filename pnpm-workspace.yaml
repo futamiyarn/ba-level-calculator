@@ -1,7 +1,5 @@
-ignoredBuiltDependencies:
-  - protobufjs
-
 onlyBuiltDependencies:
   - esbuild
   - sharp
   - workerd
+  - protobufjs
