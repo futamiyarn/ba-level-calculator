@@ -1,216 +1,225 @@
 <script>
-	import { onMount } from 'svelte';
+  import { onMount } from 'svelte';
+  
+  import InputView from '$lib/components/views/InputView.svelte';
+  import ResultView from '$lib/components/views/ResultView.svelte';
 
-	import InputView from '$lib/components/views/InputView.svelte';
-	import ResultView from '$lib/components/views/ResultView.svelte';
+  import { config as appConfig } from '$lib/config';
+  import { storage } from '$lib/utils/storage';
+  
+  // Menggunakan service yang sudah diperbarui dengan @google/genai
+  import { analyzeScreenshot } from '$lib/utils/scan_service';
 
-	import { config as appConfig } from '$lib/config';
-	import { storage } from '$lib/utils/storage';
+  import { 
+    getRequiredExp, 
+    calculateDailyAP, 
+    calculateDaysToTarget, 
+    calculateExpertPermit 
+  } from '$lib/utils/calculator';
 
-	// PERBAIKAN IMPORT: Mengarah ke folder utils
-	import { analyzeScreenshot } from '$lib/utils/scan_service';
+  // --- STATE ---
+  let viewState = 'input'; 
+  let isLoaded = false;
+  
+  // User Data Default
+  let userData = { lv: 1, exp_current: 0, exp_max: 8 };
+  let targetLv = 90;
+  
+  // Default Config
+  let userConfig = {
+    loginBonus: true, cafeRank: 8, clubLogin: true,
+    diaryTask: true, weeklyTask: true, freeShop: true,
+    pvpRefreshes: 0, pyroRefreshes: 0, twoWeekPack: false,
+    customAP: 0 
+  };
 
-	import {
-		getRequiredExp,
-		calculateDailyAP,
-		calculateDaysToTarget,
-		calculateExpertPermit
-	} from '$lib/utils/calculator';
+  // UI State
+  let scanQuota = { allowed: true, remaining: 8 };
+  let isScanning = false;
+  let scanError = null;
+  let currentScanImage = null; 
+  let isVerified = false;
+  
+  // --- DEBUG STATE ---
+  let debugResult = null; // Variabel untuk menyimpan hasil RAW dari AI
 
-	// --- STATE ---
-	let viewState = 'input';
-	let isLoaded = false;
+  // --- LIFECYCLE ---
+  onMount(() => {
+    const savedData = storage.loadUserData();
+    if (savedData) userData = savedData;
 
-	// User Data Default
-	let userData = { lv: 1, exp_current: 0, exp_max: 8 };
-	let targetLv = 90;
+    const savedConfig = storage.loadUserConfig();
+    if (savedConfig) {
+      userConfig = { ...userConfig, ...savedConfig };
+    }
 
-	// Default Config
-	let userConfig = {
-		loginBonus: true,
-		cafeRank: 8,
-		clubLogin: true,
-		diaryTask: true,
-		weeklyTask: true,
-		freeShop: true,
-		pvpRefreshes: 0,
-		pyroRefreshes: 0,
-		twoWeekPack: false,
-		customAP: 0
-	};
+    // Cek kuota saat load
+    scanQuota = storage.checkScanQuota();
+    isLoaded = true;
+  });
 
-	// UI State
-	let scanQuota = { allowed: true, remaining: 8 };
-	let isScanning = false;
-	let scanError = null;
-	let currentScanImage = null;
-	let isVerified = false;
+  // Auto-save saat config berubah
+  $: if (isLoaded && userConfig) {
+    storage.saveUserConfig(userConfig);
+  }
 
-	// --- LIFECYCLE ---
-	onMount(() => {
-		const savedData = storage.loadUserData();
-		if (savedData) userData = savedData;
+  // --- HANDLERS ---
+  const onVerified = () => isVerified = true;
 
-		const savedConfig = storage.loadUserConfig();
-		if (savedConfig) {
-			userConfig = { ...userConfig, ...savedConfig };
-		}
+  const onReset = () => {
+    viewState = 'input';
+    currentScanImage = null;
+    scanError = null;
+    debugResult = null; // Reset debug
+    scanQuota = storage.checkScanQuota();
+  };
 
-		// Cek kuota saat load
-		scanQuota = storage.checkScanQuota();
-		isLoaded = true;
-	});
+  const processFinalData = (lv, curExp) => {
+    let finalLv = parseInt(lv);
+    let finalCur = curExp;
+    let finalMax = 0;
 
-	// Auto-save saat config berubah
-	$: if (isLoaded && userConfig) {
-		storage.saveUserConfig(userConfig);
-	}
+    // Logic for Lv 90
+    if (finalLv >= 90 || curExp === 'MAX') {
+      finalLv = 90;
+      finalCur = 'MAX';
+      finalMax = 'MAX';
+    } else {
+      finalMax = getRequiredExp(finalLv);
+      if (typeof finalCur === 'number' && finalCur > finalMax) {
+        finalCur = finalMax - 1;
+      }
+    }
 
-	// --- HANDLERS ---
-	const onVerified = () => (isVerified = true);
+    userData = { lv: finalLv, exp_current: finalCur, exp_max: finalMax };
+    
+    if (isLoaded) storage.saveUserData(userData);
+    
+    viewState = 'result';
+  };
 
-	const onReset = () => {
-		viewState = 'input';
-		currentScanImage = null;
-		scanError = null;
-		scanQuota = storage.checkScanQuota();
-	};
+  const onManualSubmit = (event) => {
+    const { lv, cur } = event.detail;
+    const curParsed = (cur === '' || cur === null) ? 0 : parseInt(cur);
+    if (lv > 0) processFinalData(lv, curParsed);
+  };
 
-	const processFinalData = (lv, curExp) => {
-		let finalLv = parseInt(lv);
-		let finalCur = curExp;
-		let finalMax = 0;
+  const onPresetSubmit = () => processFinalData(90, 'MAX');
 
-		// Logic for Lv 90
-		if (finalLv >= 90 || curExp === 'MAX') {
-			finalLv = 90;
-			finalCur = 'MAX';
-			finalMax = 'MAX';
-		} else {
-			finalMax = getRequiredExp(finalLv);
-			if (typeof finalCur === 'number' && finalCur > finalMax) {
-				finalCur = finalMax - 1;
-			}
-		}
+  const onFileSelected = (event) => {
+    currentScanImage = event.detail.base64;
+    scanError = null;
+    debugResult = null;
+  };
 
-		userData = { lv: finalLv, exp_current: finalCur, exp_max: finalMax };
+  const onResetScanState = () => {
+    currentScanImage = null;
+    scanError = null;
+    debugResult = null;
+  }
 
-		if (isLoaded) storage.saveUserData(userData);
+  // --- IMAGE COMPRESSION HELPER ---
+  const compressImage = (base64Str, maxWidth = 1024) => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.src = "data:image/png;base64," + base64Str; 
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let width = img.width;
+        let height = img.height;
+        
+        if (width > maxWidth) {
+          height *= maxWidth / width;
+          width = maxWidth;
+        }
+        
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+        resolve(canvas.toDataURL('image/jpeg', 0.7).split(',')[1]); 
+      };
+      img.onerror = () => resolve(base64Str);
+    });
+  };
 
-		viewState = 'result';
-	};
+  // --- LOGIC UTAMA: REQUEST SCAN ---
+  const onRequestScan = async () => {
+    if (!currentScanImage) return;
 
-	const onManualSubmit = (event) => {
-		const { lv, cur } = event.detail;
-		const curParsed = cur === '' || cur === null ? 0 : parseInt(cur);
-		if (lv > 0) processFinalData(lv, curParsed);
-	};
+    // 1. Cek Limit
+    const quota = storage.checkScanQuota();
+    if (!quota.allowed) {
+      scanError = "Kuota scan mingguan habis (8/8). Gunakan input manual.";
+      scanQuota = quota;
+      return;
+    }
 
-	const onPresetSubmit = () => processFinalData(90, 'MAX');
+    isScanning = true;
+    scanError = null;
+    debugResult = null;
 
-	const onFileSelected = (event) => {
-		currentScanImage = event.detail.base64;
-		scanError = null;
-	};
+    try {
+      // 2. Kompresi gambar
+      const compressedImage = await compressImage(currentScanImage);
 
-	const onResetScanState = () => {
-		currentScanImage = null;
-		scanError = null;
-	};
+      // 3. Panggil Service (Menggunakan @google/genai)
+      const result = await analyzeScreenshot(compressedImage);
 
-	// --- IMAGE COMPRESSION HELPER ---
-	const compressImage = (base64Str, maxWidth = 1024) => {
-		return new Promise((resolve) => {
-			const img = new Image();
-			img.src = 'data:image/png;base64,' + base64Str;
-			img.onload = () => {
-				const canvas = document.createElement('canvas');
-				let width = img.width;
-				let height = img.height;
+      // 4. Validasi Hasil
+      if (!result.valid) {
+        throw new Error(result.error || result.message || "Gambar tidak valid/level tidak terbaca.");
+      }
 
-				if (width > maxWidth) {
-					height *= maxWidth / width;
-					width = maxWidth;
-				}
+      // 5. DEBUG MODE AKTIF:
+      // Kita simpan hasilnya untuk ditampilkan di UI
+      debugResult = result;
+      
+      // Kita UPDATE kuota tapi JANGAN PINDAH HALAMAN DULU
+      storage.incrementScan();
+      scanQuota = storage.checkScanQuota(); 
 
-				canvas.width = width;
-				canvas.height = height;
-				const ctx = canvas.getContext('2d');
-				ctx.drawImage(img, 0, 0, width, height);
-				resolve(canvas.toDataURL('image/jpeg', 0.7).split(',')[1]);
-			};
-			img.onerror = () => resolve(base64Str);
-		});
-	};
+      // 6. STOP SEMENTARA (Uncomment baris di bawah jika sudah selesai debugging)
+      // processFinalData(result.lv, result.exp_current);
 
-	// --- LOGIC UTAMA: REQUEST SCAN ---
-	const onRequestScan = async () => {
-		if (!currentScanImage) return;
+    } catch (err) {
+      console.error(err);
+      scanError = err.message || "Gagal memproses gambar.";
+    } finally {
+      isScanning = false;
+    }
+  };
 
-		// 1. Cek Limit via Storage
-		const quota = storage.checkScanQuota();
-		if (!quota.allowed) {
-			scanError = 'Kuota scan mingguan habis (8/8). Gunakan input manual.';
-			scanQuota = quota;
-			return;
-		}
+  // --- REACTIVE CALCULATIONS ---
+  $: dailyAP = calculateDailyAP(userConfig, userData.lv);
+  $: calculations = calculateDaysToTarget(userData.lv, userData.exp_current, targetLv, dailyAP);
+  $: permitData = calculateExpertPermit(userData.lv, userConfig, dailyAP);
 
-		isScanning = true;
-		scanError = null;
-
-		try {
-			// 2. Kompresi gambar
-			const compressedImage = await compressImage(currentScanImage);
-
-			// 3. Panggil Service Baru
-			const result = await analyzeScreenshot(compressedImage);
-
-			// 4. Validasi Hasil
-			if (!result.valid) {
-				throw new Error(result.message || 'Gambar tidak valid/level tidak terbaca.');
-			}
-
-			// 5. Sukses: Increment Quota
-			storage.incrementScan();
-			scanQuota = storage.checkScanQuota();
-
-			// 6. Proses Data
-			processFinalData(result.lv, result.exp_current);
-		} catch (err) {
-			console.error(err);
-			scanError = err.message || 'Gagal memproses gambar. Coba input manual.';
-		} finally {
-			isScanning = false;
-		}
-	};
-
-	// --- REACTIVE CALCULATIONS ---
-	$: dailyAP = calculateDailyAP(userConfig, userData.lv);
-	$: calculations = calculateDaysToTarget(userData.lv, userData.exp_current, targetLv, dailyAP);
-	$: permitData = calculateExpertPermit(userData.lv, userConfig, dailyAP);
 </script>
 
 {#if viewState === 'input'}
-	<InputView
-		{scanQuota}
-		{isScanning}
-		{scanError}
-		{isVerified}
-		on:verified={onVerified}
-		on:fileSelected={onFileSelected}
-		on:requestScan={onRequestScan}
-		on:submitManual={onManualSubmit}
-		on:submitPreset={onPresetSubmit}
-		on:resetScanState={onResetScanState}
-	/>
+  <InputView 
+    {scanQuota} 
+    {isScanning} 
+    {scanError}
+    {isVerified}
+    {debugResult} 
+    on:verified={onVerified}
+    on:fileSelected={onFileSelected}
+    on:requestScan={onRequestScan}
+    on:submitManual={onManualSubmit}
+    on:submitPreset={onPresetSubmit}
+    on:resetScanState={onResetScanState}
+  />
+
 {:else if viewState === 'result'}
-	<ResultView
-		{userData}
-		{dailyAP}
-		{calculations}
-		{permitData}
-		bind:targetLv
-		bind:config={userConfig}
-		on:reset={onReset}
-	/>
+  <ResultView 
+    {userData}
+    {dailyAP}
+    {calculations}
+    {permitData}
+    bind:targetLv={targetLv}
+    bind:config={userConfig}
+    on:reset={onReset}
+  />
 {/if}
