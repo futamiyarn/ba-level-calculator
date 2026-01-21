@@ -13,10 +13,10 @@
 				},
 				{
 					label: 'Student Leveling',
-					href: '/student',
+					href: '#',
 					icon: '🎓',
-					desc: 'Calculate Activity Reports and Credits needed.',
-					disabled: false
+					desc: 'Calculate Activity Reports and Credits needed. (Coming Soon)',
+					disabled: true
 				},
 				{
 					label: 'Relationship Level',
