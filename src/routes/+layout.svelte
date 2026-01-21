@@ -1,6 +1,7 @@
 <script>
 	import '../app.css';
 	import Logo from '$lib/components/ui/Logo.svelte';
+	import { Globe, ExternalLink } from 'lucide-svelte';
 </script>
 
 <div class="relative flex min-h-screen flex-col overflow-hidden bg-slate-50">
@@ -33,9 +34,40 @@
 		</a>
 
 		<!-- Header Actions -->
-		<div id="header-actions"></div>
-	</nav>
+		<div class="flex items-center gap-2">
+			<!-- Country Button Placeholder -->
+			<button
+				class="flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-600 transition-colors hover:bg-slate-200"
+			>
+				<Globe size={14} />
+				<span>Global</span>
+			</button>
 
+			<!-- External Link -->
+			<a
+				href="https://futami.my.id"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="flex h-8 w-8 items-center justify-center rounded-full text-slate-400 transition-colors hover:bg-slate-100 hover:text-cyan-500"
+				title="Visit futami.my.id"
+			>
+				<svg
+					width="20"
+					height="20"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+					<polyline points="15 3 21 3 21 9" />
+					<line x1="10" y1="14" x2="21" y2="3" />
+				</svg>
+			</a>
+		</div>
+	</nav>
 	<!-- Main Content -->
 	<main class="relative z-10 mx-auto w-full max-w-xl flex-1 p-4 md:py-8">
 		<slot />

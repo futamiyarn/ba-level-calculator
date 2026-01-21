@@ -1,6 +1,6 @@
 <script>
 	import { slide } from 'svelte/transition';
-	import { Coins, ChevronDown, CheckCircle2, Zap, Lock, AlertCircle } from 'lucide-svelte';
+	import { Ticket, ChevronDown, CheckCircle2, Zap, Lock, AlertCircle } from 'lucide-svelte';
 
 	export let permitData = {};
 	export let isOpen = false;
@@ -15,7 +15,7 @@
 			<div
 				class="flex h-10 w-10 items-center justify-center rounded-full bg-purple-100 text-purple-600"
 			>
-				<Coins size={20} />
+				<Ticket size={20} />
 			</div>
 			<div class="flex flex-col text-left">
 				<h3 class="text-sm font-bold text-slate-700">Expert Permit</h3>
@@ -84,7 +84,16 @@
 								<AlertCircle size={10} /> Requires Max Level (90)
 							</span>
 						{:else}
-							<span class="ml-6 text-[10px] text-purple-400">1 AP = 1 Permit</span>
+							<span class="ml-6 text-[10px] text-purple-400">1 AP = 1 Permit (Max 12,000)</span>
+							<!-- Wasted AP Warning -->
+							{#if permitData.wastedAP > 0}
+								<div
+									class="mt-1 ml-6 flex items-center gap-1 text-[10px] font-bold text-orange-600"
+								>
+									<AlertCircle size={10} />
+									<span>Max Limit Reached!</span>
+								</div>
+							{/if}
 						{/if}
 					</div>
 
@@ -96,6 +105,9 @@
 								? permitData.apOnly.toLocaleString()
 								: permitData.apPotential.toLocaleString()}
 						</span>
+						{#if permitData.isMaxed && permitData.wastedAP > 0}
+							<div class="text-[9px] font-medium text-orange-500">(capped)</div>
+						{/if}
 					</div>
 				</div>
 			</div>

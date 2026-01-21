@@ -19,7 +19,7 @@
 		<div class="flex items-center gap-3">
 			<!-- Icon -->
 			<div
-				class={`relative flex h-10 w-10 items-center justify-center rounded-full ${isBoostActive ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-500'}`}
+				class={`relative flex h-10 w-10 items-center justify-center rounded-full ${isBoostActive ? 'bg-orange-100 text-orange-600' : 'bg-slate-100 text-slate-500'}`}
 			>
 				<Calendar size={20} />
 				{#if isBoostActive}
@@ -33,9 +33,10 @@
 				<!-- Compact Description -->
 				{#if !isOpen}
 					<p transition:slide class="text-[10px] font-medium text-slate-500">
-						Daily: <span class="font-bold text-blue-700">{dailyExpEstimate.toLocaleString()}</span>
+						Daily: <span class="font-bold text-orange-600">{dailyExpEstimate.toLocaleString()}</span
+						>
 						{#if isBoostActive}
-							<span class="ml-1 text-[9px] font-bold text-indigo-500"
+							<span class="ml-1 text-[9px] font-bold text-orange-500"
 								>({boostMultiplier}x Boost)</span
 							>
 						{/if}
@@ -76,10 +77,11 @@
 				<!-- Weekly Strategy -->
 				<div class="flex items-center justify-between">
 					<div class="flex flex-col">
-						<span class="text-[11px] font-bold text-indigo-500 uppercase">Weekly (2x Strategy)</span>
-						<span class="text-[9px] text-slate-400 leading-tight">Hoard for Weekend Event</span>
+						<span class="text-[11px] font-bold text-orange-500 uppercase">Weekly (2x Strategy)</span
+						>
+						<span class="text-[9px] leading-tight text-slate-400">Hoard for Weekend Event</span>
 					</div>
-					<div class="text-lg font-black text-indigo-600">
+					<div class="text-lg font-black text-orange-600">
 						{hoardingExpEstimate.toLocaleString()}
 					</div>
 				</div>
@@ -89,7 +91,7 @@
 			<div class="mb-3 text-center">
 				{#if isBoostActive}
 					<div
-						class="inline-block rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-[10px] font-bold text-indigo-600"
+						class="inline-block rounded-full border border-orange-100 bg-orange-50 px-3 py-1 text-[10px] font-bold text-orange-600"
 					>
 						Active Boost: {boostMultiplier}x EXP
 					</div>
@@ -104,10 +106,10 @@
 
 			<!-- Beginner Boost Table -->
 			{#if isBoostActive}
-				<div class="rounded-xl border border-indigo-100 bg-indigo-50 p-3">
+				<div class="rounded-xl border border-orange-100 bg-orange-50 p-3">
 					<div class="mb-3 flex items-center gap-2">
-						<ShieldCheck size={14} class="text-indigo-500" />
-						<span class="text-xs font-bold text-indigo-700">Beginner Boost Table</span>
+						<ShieldCheck size={14} class="text-orange-500" />
+						<span class="text-xs font-bold text-orange-700">Beginner Boost Table</span>
 					</div>
 					<div class="grid grid-cols-3 gap-2">
 						{#each [{ range: '1-20', x: '2x' }, { range: '21-40', x: '1.5x' }, { range: '41-50', x: '1.25x' }] as item}
@@ -115,7 +117,7 @@
 								class={`rounded-lg border p-2 text-center ${
 									currentLv >= parseInt(item.range.split('-')[0]) &&
 									currentLv <= parseInt(item.range.split('-')[1].replace('50', '50'))
-										? 'border-indigo-600 bg-indigo-500 text-white shadow-sm'
+										? 'border-orange-600 bg-orange-500 text-white shadow-sm'
 										: 'border-slate-100 bg-white text-slate-400'
 								}`}
 							>
@@ -123,7 +125,7 @@
 									class={`mb-0.5 text-[9px] ${
 										currentLv >= parseInt(item.range.split('-')[0]) &&
 										currentLv <= parseInt(item.range.split('-')[1])
-											? 'text-indigo-100'
+											? 'text-orange-100'
 											: 'text-slate-400'
 									}`}
 								>

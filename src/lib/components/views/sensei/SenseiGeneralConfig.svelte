@@ -1,6 +1,6 @@
 <script>
 	import { slide } from 'svelte/transition';
-	import { Zap, Clock, Star, Coins, Edit3, X, Info } from 'lucide-svelte';
+	import { Zap, Clock, Star, Ticket, Edit3, X, Info } from 'lucide-svelte';
 	import gameData from '$lib/data/game_data.json';
 	import { getBaseAP } from '$lib/utils/SenseiCalculator';
 
@@ -46,7 +46,7 @@
 	<div class="flex flex-col">
 		<!-- Natural Regen -->
 		<div
-			class={`flex flex-col border-b border-slate-50 px-5 py-3 last:border-0 transition-opacity ${baseApValue > 0 ? 'opacity-100' : 'opacity-40 grayscale'}`}
+			class={`flex flex-col border-b border-slate-50 px-5 py-3 transition-opacity last:border-0 ${baseApValue > 0 ? 'opacity-100' : 'opacity-40 grayscale'}`}
 		>
 			<div class="flex items-center justify-between">
 				<div class="flex items-center gap-3">
@@ -221,7 +221,7 @@
 						<div
 							class={`flex items-center gap-1 rounded-md border px-2 py-0.5 ${config[item.key] ? 'border-purple-100 bg-purple-50' : 'border-slate-100 bg-slate-50'}`}
 						>
-							<Coins size={10} class={config[item.key] ? 'text-purple-500' : 'text-slate-400'} />
+							<Ticket size={10} class={config[item.key] ? 'text-purple-500' : 'text-slate-400'} />
 							<span
 								class={`text-xs font-bold ${config[item.key] ? 'text-purple-700' : 'text-slate-500'}`}
 								>{item.ep}</span
