@@ -4,7 +4,7 @@ import {
 	PUBLIC_DEV_MODE,
 	PUBLIC_OPENROUTER_API_KEY,
 	PUBLIC_OPENROUTER_MODEL
-} from '$env/static/public';
+} from '$env/dynamic/public';
 
 export const config = {
 	// Config AI (OpenRouter)
