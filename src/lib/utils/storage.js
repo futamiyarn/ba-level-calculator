@@ -1,14 +1,13 @@
-// Key untuk localStorage
+// Constants
 const STORAGE_KEY_DATA = 'ba_planner_data';
 const STORAGE_KEY_CONFIG = 'ba_planner_config';
-const STORAGE_KEY_LIMIT = 'ba_scan_usage_v2'; // Ganti key biar fresh reset
+const STORAGE_KEY_LIMIT = 'ba_scan_usage_v2';
 
-// Durasi satu minggu dalam milidetik (7 hari)
 const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
-const MAX_SCANS = 8; // Limit per minggu
+const MAX_SCANS = 8;
 
 export const storage = {
-	// --- USER DATA ---
+	// User Data
 	saveUserData: (data) => {
 		if (typeof localStorage === 'undefined') return;
 		localStorage.setItem(STORAGE_KEY_DATA, JSON.stringify(data));
@@ -20,7 +19,7 @@ export const storage = {
 		return raw ? JSON.parse(raw) : null;
 	},
 
-	// --- CONFIG DATA ---
+	// User Config
 	saveUserConfig: (config) => {
 		if (typeof localStorage === 'undefined') return;
 		localStorage.setItem(STORAGE_KEY_CONFIG, JSON.stringify(config));
@@ -32,7 +31,7 @@ export const storage = {
 		return raw ? JSON.parse(raw) : null;
 	},
 
-	// --- SCAN QUOTA (Logika Limit) ---
+	// Scan Quota
 	checkScanQuota: () => {
 		if (typeof localStorage === 'undefined') return { allowed: false, remaining: 0 };
 
@@ -40,9 +39,8 @@ export const storage = {
 		const now = Date.now();
 		let usage = raw ? JSON.parse(raw) : { count: 0, weekStart: now };
 
-		// Cek apakah sudah lewat 1 minggu dari `weekStart`
+		// Check weekly reset
 		if (now - usage.weekStart > WEEK_MS) {
-			// Reset limit
 			usage = { count: 0, weekStart: now };
 			localStorage.setItem(STORAGE_KEY_LIMIT, JSON.stringify(usage));
 		}
@@ -51,11 +49,11 @@ export const storage = {
 			allowed: usage.count < MAX_SCANS,
 			remaining: Math.max(0, MAX_SCANS - usage.count),
 			count: usage.count,
-			resetDate: new Date(usage.weekStart + WEEK_MS) // Info kapan reset (opsional)
+			resetDate: new Date(usage.weekStart + WEEK_MS)
 		};
 	},
 
-	// Fungsi untuk menambah counter HANYA jika scan sukses
+	// Increment usage
 	incrementScan: () => {
 		if (typeof localStorage === 'undefined') return;
 
