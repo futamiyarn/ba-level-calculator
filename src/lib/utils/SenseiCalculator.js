@@ -1,13 +1,13 @@
 import gameData from '$lib/data/game_data.json';
 
-// Helper: Get Required EXP to reach the next level
+// Get Required EXP
 export const getRequiredExp = (lv) => {
 	if (lv >= 90) return 0;
 	const exp = gameData.exp_table[lv.toString()];
 	return exp || 0;
 };
 
-// Helper: Calculate Base AP (Regen/Cap) based on Level
+// Get Base AP
 export const getBaseAP = (lv) => {
 	const level = parseInt(lv) || 1;
 	if (level <= 20) {
@@ -17,7 +17,7 @@ export const getBaseAP = (lv) => {
 	}
 };
 
-// Helper: Get EXP Boost Multiplier based on Level
+// Get Boost Multiplier
 export const getBoostMultiplier = (lv) => {
 	if (lv <= 20) return 2.0;
 	if (lv <= 40) return 1.5;
@@ -25,7 +25,7 @@ export const getBoostMultiplier = (lv) => {
 	return 1.0;
 };
 
-// Calculate Total Daily AP based on Config
+// Calculate Daily AP
 export const calculateDailyAP = (config, currentLv) => {
 	let ap = getBaseAP(currentLv);
 
@@ -36,7 +36,7 @@ export const calculateDailyAP = (config, currentLv) => {
 	if (config.freeShop) ap += 10;
 	if (config.twoWeekPack) ap += 150;
 
-	// Custom AP Input (Input manual user)
+	// Custom AP Input
 	if (config.customAP) ap += parseInt(config.customAP) || 0;
 
 	const cafeAp = gameData.cafe_ap[config.cafeRank] || 0;
@@ -48,45 +48,32 @@ export const calculateDailyAP = (config, currentLv) => {
 	return Math.floor(ap);
 };
 
-// Calculate Estimated Days to Target (ACCURATE SIMULATION)
+// Calculate Days to Target
 export const calculateDaysToTarget = (currentLv, currentExp, targetLv, startDailyAP) => {
 	if (currentLv >= targetLv || startDailyAP <= 0) return { days: 0, expNeeded: 0 };
 
 	let totalDays = 0;
 	let totalExpNeeded = 0;
 
-	// Simpan Base AP awal untuk menghitung selisih kenaikan AP saat level naik
 	const initialBaseAP = getBaseAP(currentLv);
 
-	// Loop level-by-level dari level sekarang sampai target
 	for (let lv = currentLv; lv < targetLv; lv++) {
-		// 1. Tentukan EXP yang dibutuhkan untuk level ini
 		let expForThisLevel = getRequiredExp(lv);
 
-		// Jika ini level pertama, kurangi dengan EXP yang sudah dimiliki saat ini
 		if (lv === currentLv) {
 			const cur = currentExp === 'MAX' ? expForThisLevel : parseInt(currentExp || 0);
 			expForThisLevel -= cur;
-			// Pastikan tidak negatif (jika user input exp > max)
 			if (expForThisLevel < 0) expForThisLevel = 0;
 		}
 
 		totalExpNeeded += expForThisLevel;
 
-		// 2. Hitung Daily AP yang AKTUAL untuk level ini
-		// (AP Konfig Awal + Kenaikan Natural Regen karena level naik)
 		const currentBaseAP = getBaseAP(lv);
 		const apIncrease = currentBaseAP - initialBaseAP;
 		const actualDailyAP = startDailyAP + apIncrease;
 
-		// 3. Tentukan Multiplier EXP untuk level ini (Berhenti di Lv 51)
 		const multiplier = getBoostMultiplier(lv);
-
-		// 4. Hitung EXP harian efektif (AP * Multiplier)
 		const dailyExpGain = actualDailyAP * multiplier;
-
-		// 5. Hitung berapa hari yang dibutuhkan untuk menyelesaikan level INI SAJA
-		// Kita biarkan desimal agar presisi, nanti dibulatkan di akhir total
 		const daysForLevel = expForThisLevel / dailyExpGain;
 
 		totalDays += daysForLevel;
@@ -94,11 +81,11 @@ export const calculateDaysToTarget = (currentLv, currentExp, targetLv, startDail
 
 	return {
 		expNeeded: totalExpNeeded,
-		days: Math.ceil(totalDays) // Bulatkan ke atas total hari
+		days: Math.ceil(totalDays)
 	};
 };
 
-// Calculate Expert Permit Income
+// Calculate Expert Permit
 export const calculateExpertPermit = (lv, config, dailyAP) => {
 	const isMaxed = lv >= 90;
 
@@ -125,4 +112,28 @@ export const calculateExpertPermit = (lv, config, dailyAP) => {
 		isMaxed,
 		wastedAP: wasted
 	};
+};
+
+// Calculate Hoarding Strategy EXP (Weekly + 2x Weekend)
+export const calculateHoardingExp = (config, dailyAP, boostMultiplier) => {
+	// Identify hoardable daily AP components (already included in dailyAP)
+	// Club (10), Login (55), WeeklyTask (50 avg)
+	const club = config.clubLogin ? 10 : 0;
+	const login = config.loginBonus ? 55 : 0;
+	const weekly = config.weeklyTask ? 50 : 0;
+
+	const hoardableDaily = club + login + weekly;
+	const nonHoardableDaily = dailyAP - hoardableDaily;
+
+	// Weekdays (5 days): Standard Rate
+	const weekdayExp = nonHoardableDaily * 5 * boostMultiplier;
+
+	// Weekend (2 days): 2x Event Rate
+	// Assumption: 2x applies to the AP spent
+	const weekendExp = nonHoardableDaily * 2 * boostMultiplier * 2;
+
+	// Hoarded (7 days accumulated): Dumped on Weekend (2x)
+	const hoardedExp = hoardableDaily * 7 * boostMultiplier * 2;
+
+	return Math.floor(weekdayExp + weekendExp + hoardedExp);
 };

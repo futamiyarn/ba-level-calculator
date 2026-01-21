@@ -1,216 +1,142 @@
 <script>
-	import { onMount } from 'svelte';
+	import Logo from '$lib/components/ui/Logo.svelte';
 
-	import InputView from '$lib/components/views/InputView.svelte';
-	import ResultView from '$lib/components/views/ResultView.svelte';
-
-	import { config as appConfig } from '$lib/config';
-	import { storage } from '$lib/utils/storage';
-
-	// PERBAIKAN IMPORT: Mengarah ke folder utils
-	import { analyzeScreenshot } from '$lib/utils/scan_service';
-
-	import {
-		getRequiredExp,
-		calculateDailyAP,
-		calculateDaysToTarget,
-		calculateExpertPermit
-	} from '$lib/utils/calculator';
-
-	// --- STATE ---
-	let viewState = 'input';
-	let isLoaded = false;
-
-	// User Data Default
-	let userData = { lv: 1, exp_current: 0, exp_max: 8 };
-	let targetLv = 90;
-
-	// Default Config
-	let userConfig = {
-		loginBonus: true,
-		cafeRank: 8,
-		clubLogin: true,
-		diaryTask: true,
-		weeklyTask: true,
-		freeShop: true,
-		pvpRefreshes: 0,
-		pyroRefreshes: 0,
-		twoWeekPack: false,
-		customAP: 0
-	};
-
-	// UI State
-	let scanQuota = { allowed: true, remaining: 8 };
-	let isScanning = false;
-	let scanError = null;
-	let currentScanImage = null;
-	let isVerified = false;
-
-	// --- LIFECYCLE ---
-	onMount(() => {
-		const savedData = storage.loadUserData();
-		if (savedData) userData = savedData;
-
-		const savedConfig = storage.loadUserConfig();
-		if (savedConfig) {
-			userConfig = { ...userConfig, ...savedConfig };
-		}
-
-		// Cek kuota saat load
-		scanQuota = storage.checkScanQuota();
-		isLoaded = true;
-	});
-
-	// Auto-save saat config berubah
-	$: if (isLoaded && userConfig) {
-		storage.saveUserConfig(userConfig);
-	}
-
-	// --- HANDLERS ---
-	const onVerified = () => (isVerified = true);
-
-	const onReset = () => {
-		viewState = 'input';
-		currentScanImage = null;
-		scanError = null;
-		scanQuota = storage.checkScanQuota();
-	};
-
-	const processFinalData = (lv, curExp) => {
-		let finalLv = parseInt(lv);
-		let finalCur = curExp;
-		let finalMax = 0;
-
-		// Logic for Lv 90
-		if (finalLv >= 90 || curExp === 'MAX') {
-			finalLv = 90;
-			finalCur = 'MAX';
-			finalMax = 'MAX';
-		} else {
-			finalMax = getRequiredExp(finalLv);
-			if (typeof finalCur === 'number' && finalCur > finalMax) {
-				finalCur = finalMax - 1;
-			}
-		}
-
-		userData = { lv: finalLv, exp_current: finalCur, exp_max: finalMax };
-
-		if (isLoaded) storage.saveUserData(userData);
-
-		viewState = 'result';
-	};
-
-	const onManualSubmit = (event) => {
-		const { lv, cur } = event.detail;
-		const curParsed = cur === '' || cur === null ? 0 : parseInt(cur);
-		if (lv > 0) processFinalData(lv, curParsed);
-	};
-
-	const onPresetSubmit = () => processFinalData(90, 'MAX');
-
-	const onFileSelected = (event) => {
-		currentScanImage = event.detail.base64;
-		scanError = null;
-	};
-
-	const onResetScanState = () => {
-		currentScanImage = null;
-		scanError = null;
-	};
-
-	// --- IMAGE COMPRESSION HELPER ---
-	const compressImage = (base64Str, maxWidth = 1024) => {
-		return new Promise((resolve) => {
-			const img = new Image();
-			img.src = 'data:image/png;base64,' + base64Str;
-			img.onload = () => {
-				const canvas = document.createElement('canvas');
-				let width = img.width;
-				let height = img.height;
-
-				if (width > maxWidth) {
-					height *= maxWidth / width;
-					width = maxWidth;
+	const menuItems = [
+		{
+			category: 'Calculators',
+			links: [
+				{
+					label: 'Sensei EXP & Expert Permit',
+					href: '/sensei',
+					icon: '📊',
+					desc: 'Calculate daily AP, days to max level, and expert permits.'
+				},
+				{
+					label: 'Student Leveling',
+					href: '#',
+					icon: '🎓',
+					desc: 'Calculate Activity Reports and Credits needed. (Coming Soon)',
+					disabled: true
+				},
+				{
+					label: 'Relationship Level',
+					href: '#',
+					icon: '💖',
+					desc: 'Calculate gifts and AP for bond levels. (Coming Soon)',
+					disabled: true
 				}
-
-				canvas.width = width;
-				canvas.height = height;
-				const ctx = canvas.getContext('2d');
-				ctx.drawImage(img, 0, 0, width, height);
-				resolve(canvas.toDataURL('image/jpeg', 0.7).split(',')[1]);
-			};
-			img.onerror = () => resolve(base64Str);
-		});
-	};
-
-	// --- LOGIC UTAMA: REQUEST SCAN ---
-	const onRequestScan = async () => {
-		if (!currentScanImage) return;
-
-		// 1. Cek Limit via Storage
-		const quota = storage.checkScanQuota();
-		if (!quota.allowed) {
-			scanError = 'Kuota scan mingguan habis (8/8). Gunakan input manual.';
-			scanQuota = quota;
-			return;
+			]
 		}
-
-		isScanning = true;
-		scanError = null;
-
-		try {
-			// 2. Kompresi gambar
-			const compressedImage = await compressImage(currentScanImage);
-
-			// 3. Panggil Service Baru
-			const result = await analyzeScreenshot(compressedImage);
-
-			// 4. Validasi Hasil
-			if (!result.valid) {
-				throw new Error(result.message || 'Gambar tidak valid/level tidak terbaca.');
-			}
-
-			// 5. Sukses: Increment Quota
-			storage.incrementScan();
-			scanQuota = storage.checkScanQuota();
-
-			// 6. Proses Data
-			processFinalData(result.lv, result.exp_current);
-		} catch (err) {
-			console.error(err);
-			scanError = err.message || 'Gagal memproses gambar. Coba input manual.';
-		} finally {
-			isScanning = false;
-		}
-	};
-
-	// --- REACTIVE CALCULATIONS ---
-	$: dailyAP = calculateDailyAP(userConfig, userData.lv);
-	$: calculations = calculateDaysToTarget(userData.lv, userData.exp_current, targetLv, dailyAP);
-	$: permitData = calculateExpertPermit(userData.lv, userConfig, dailyAP);
+	];
 </script>
 
-{#if viewState === 'input'}
-	<InputView
-		{scanQuota}
-		{isScanning}
-		{scanError}
-		{isVerified}
-		on:verified={onVerified}
-		on:fileSelected={onFileSelected}
-		on:requestScan={onRequestScan}
-		on:submitManual={onManualSubmit}
-		on:submitPreset={onPresetSubmit}
-		on:resetScanState={onResetScanState}
-	/>
-{:else if viewState === 'result'}
-	<ResultView
-		{userData}
-		{dailyAP}
-		{calculations}
-		{permitData}
-		bind:targetLv
-		bind:config={userConfig}
-		on:reset={onReset}
-	/>
-{/if}
+<svelte:head>
+	<title>Blue Archive Tools</title>
+</svelte:head>
+
+<div
+	class="animate-fade-in mx-auto flex min-h-[80vh] w-full max-w-md flex-col items-center justify-center space-y-8"
+>
+	<!-- Header -->
+	<div class="flex flex-col items-center space-y-3 text-center">
+		<div class="rounded-full border border-cyan-100 bg-white p-3 shadow-md">
+			<Logo class="h-16 w-16 text-cyan-500" />
+		</div>
+		<div>
+			<h1 class="text-2xl font-bold text-slate-800">Blue Archive Tools</h1>
+			<p class="text-sm text-slate-500">Unofficial planning tools for Sensei</p>
+		</div>
+	</div>
+
+	<!-- Menu Links -->
+	<div class="w-full space-y-6">
+		{#each menuItems as section}
+			<div class="space-y-3">
+				<h2 class="text-center text-xs font-bold tracking-wider text-slate-400 uppercase">
+					{section.category}
+				</h2>
+
+				<div class="flex flex-col gap-3">
+					{#each section.links as link}
+						<a
+							href={link.href}
+							class="group relative flex items-center gap-4 rounded-xl border border-slate-200 bg-white px-5 py-4 shadow-sm transition-all duration-200
+								{link.disabled
+								? 'cursor-not-allowed opacity-60 grayscale'
+								: 'hover:-translate-y-1 hover:border-cyan-300 hover:shadow-md active:scale-[0.98]'}"
+							on:click={(e) => link.disabled && e.preventDefault()}
+						>
+							<span class="text-2xl transition-transform group-hover:scale-110">{link.icon}</span>
+							<div class="flex-1 text-left">
+								<h3 class="font-bold text-slate-700 group-hover:text-cyan-600">{link.label}</h3>
+								<p class="text-xs leading-tight text-slate-500">{link.desc}</p>
+							</div>
+							{#if !link.disabled}
+								<div
+									class="-translate-x-2 text-cyan-400 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100"
+								>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="20"
+										height="20"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg
+									>
+								</div>
+							{/if}
+						</a>
+					{/each}
+				</div>
+			</div>
+		{/each}
+	</div>
+
+	<!-- Footer Links -->
+	<div class="flex gap-4 pt-4">
+		<a
+			href="https://github.com"
+			target="_blank"
+			rel="noreferrer"
+			class="p-2 text-slate-400 transition-colors hover:text-slate-700"
+		>
+			<span class="sr-only">GitHub</span>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="24"
+				height="24"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				><path
+					d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 4-1 9 2.5 1 2.5 2.5 5 2.5 5-2.5 5-2.5 9 2.5 0 0-1 4-1 9-2.5 1-2.5 2.5 5 2.5 5-.27 1.02-.27 2.33 0 3.5-.73 1.02-1.08 2.25-1 3.5 0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+				/><path d="M9 18c-4.51 2-5-2-7-2" /></svg
+			>
+		</a>
+	</div>
+</div>
+
+<style>
+	:global(body) {
+		background-color: #f8fafc; /* Slate-50 */
+	}
+	.animate-fade-in {
+		animation: fadeIn 0.5s ease-out forwards;
+	}
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>
