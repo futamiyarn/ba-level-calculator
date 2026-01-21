@@ -1,4 +1,5 @@
 import { config } from '$lib/config';
+import { env } from '$env/dynamic/private';
 import { fail } from '@sveltejs/kit';
 
 /**
@@ -18,12 +19,12 @@ export const actions = {
 			return fail(400, { error: 'No image uploaded' });
 		}
 
-		// Check for API key from project config
-		const apiKey = config.openrouter.apiKey;
+		// Check for API key from private environment
+		const apiKey = env.OPENROUTER_API_KEY;
 		const model = config.openrouter.model;
 
 		if (!apiKey) {
-			return fail(500, { error: 'OpenRouter API Key is not configured' });
+			return fail(500, { error: 'OpenRouter API Key is not configured on the server' });
 		}
 
 		try {

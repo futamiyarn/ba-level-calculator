@@ -1,32 +1,27 @@
-import {
-	PUBLIC_CLOUDFLARE_SITE_KEY,
-	PUBLIC_DOUBLE_EXP_INTERVAL_WEEKS,
-	PUBLIC_DEV_MODE,
-	PUBLIC_OPENROUTER_API_KEY,
-	PUBLIC_OPENROUTER_MODEL
-} from '$env/dynamic/public';
+import { env } from '$env/dynamic/public';
 
+/**
+ * Public project configuration.
+ * Only non-sensitive values should be added here.
+ */
 export const config = {
-	// Config AI (OpenRouter)
+	// AI Model Config (Public because it's not a secret)
 	openrouter: {
-		apiKey: PUBLIC_OPENROUTER_API_KEY || '',
-		// Default ke Qwen Free jika env tidak diisi
-		model: PUBLIC_OPENROUTER_MODEL || 'qwen/qwen-2.5-vl-7b-instruct:free'
+		model: env.PUBLIC_OPENROUTER_MODEL || 'qwen/qwen-2.5-vl-7b-instruct:free'
 	},
 
-	// Keamanan (Turnstile/Captcha)
+	// Security (Turnstile/Captcha)
 	security: {
-		turnstileSiteKey: PUBLIC_CLOUDFLARE_SITE_KEY || ''
+		turnstileSiteKey: env.PUBLIC_CLOUDFLARE_SITE_KEY || ''
 	},
 
-	// Konfigurasi Game Logic
+	// Game Logic
 	game: {
-		doubleExpInterval: Number(PUBLIC_DOUBLE_EXP_INTERVAL_WEEKS) || 2
+		doubleExpInterval: Number(env.PUBLIC_DOUBLE_EXP_INTERVAL_WEEKS) || 2
 	},
 
-	// Konfigurasi Development
+	// Development
 	dev: {
-		// Aktif jika PUBLIC_DEV_MODE di .env diisi "true"
-		isDev: PUBLIC_DEV_MODE === 'true'
+		isDev: env.PUBLIC_DEV_MODE === 'true'
 	}
 };

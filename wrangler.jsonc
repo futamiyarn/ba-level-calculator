@@ -1,4 +1,12 @@
 {
 	"$schema": "./node_modules/wrangler/config-schema.json",
-	"compatibility_flags": ["nodejs_compat_v2"]
+	"name": "ba-tools",
+	"pages_build_output_dir": ".svelte-kit/cloudflare",
+	"compatibility_flags": ["nodejs_compat_v2"],
+	"vars": {
+		"PUBLIC_OPENROUTER_MODEL": "qwen/qwen-2.5-vl-7b-instruct:free",
+		"PUBLIC_CLOUDFLARE_SITE_KEY": "0x4AAAAAACNSTF3CS-SyrZQI",
+		"PUBLIC_DOUBLE_EXP_INTERVAL_WEEKS": "2",
+		"PUBLIC_DEV_MODE": "false"
+	}
 }
