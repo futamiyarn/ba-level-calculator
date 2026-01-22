@@ -1,10 +1,11 @@
 <script>
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
-	import { Coffee } from 'lucide-svelte';
+	import { Coffee, Info } from 'lucide-svelte';
 	import { goto } from '$app/navigation';
 
 	import EditLevelModal from '$lib/components/views/sensei/SenseiEditLevelModal.svelte';
+	import InfoModal from '$lib/components/views/sensei/SenseiInfoModal.svelte';
 	import GeneralConfig from '$lib/components/views/sensei/SenseiGeneralConfig.svelte';
 	import ShopConfig from '$lib/components/views/sensei/SenseiShopConfig.svelte';
 	import PaidConfig from '$lib/components/views/sensei/SenseiPaidConfig.svelte';
@@ -27,6 +28,7 @@
 	// State
 	let isLoaded = false;
 	let showEditModal = false;
+	let showInfoModal = false;
 
 	let userData = { lv: 1, exp_current: 0, exp_max: 8 };
 	let targetLv = 90;
@@ -114,7 +116,16 @@
 
 		userData = { lv: finalLv, exp_current: finalCur, exp_max: finalMax };
 
-		if (isLoaded) storage.saveUserData(userData);
+		if (isLoaded) {
+			storage.saveUserData(userData);
+
+			// Check if info modal has been seen
+			const hasSeenInfo = storage.loadInfoModalSeen();
+			if (!hasSeenInfo) {
+				showInfoModal = true;
+				storage.saveInfoModalSeen(true);
+			}
+		}
 
 		showEditModal = false;
 	};
@@ -184,8 +195,16 @@
 		></div>
 
 		<div class="relative z-10 py-2 text-center">
-			<div class="mb-2 text-[10px] font-bold tracking-widest text-cyan-400 uppercase">
-				Current Status
+			<div
+				class="mb-2 flex items-center justify-center gap-2 text-[10px] font-bold tracking-widest text-cyan-400 uppercase"
+			>
+				<span>Current Status</span>
+				<button
+					on:click={() => (showInfoModal = true)}
+					class="text-cyan-500/50 transition-colors hover:text-cyan-400"
+				>
+					<Info size={14} />
+				</button>
 			</div>
 			<div class="flex items-baseline justify-center gap-1">
 				<span class="text-7xl font-bold tracking-tighter">{userData.lv}</span>
@@ -262,4 +281,8 @@
 		on:close={closeEditModal}
 		on:submit={onManualSubmit}
 	/>
+{/if}
+
+{#if showInfoModal}
+	<InfoModal on:close={() => (showInfoModal = false)} />
 {/if}

@@ -2,6 +2,7 @@
 	import { createEventDispatcher, onMount } from 'svelte';
 	import { enhance } from '$app/forms';
 	import { getRequiredExp } from '$lib/utils/SenseiCalculator';
+	import { storage } from '$lib/utils/storage';
 	import { config } from '$lib/config';
 	import { X, Scan, ChevronsUp, Check, Loader2 } from 'lucide-svelte';
 
@@ -22,6 +23,21 @@
 	let isCaptchaVerified = config.dev.isDev; // Bypass captcha in dev mode
 	let isScanning = false;
 	let scanError = '';
+	let scanQuota = { allowed: true, remaining: 3, count: 0, resetTime: null };
+
+	onMount(() => {
+		scanQuota = storage.checkScanQuota();
+	});
+
+	const getWaitTimeText = (resetTime) => {
+		if (!resetTime) return '';
+		const now = Date.now();
+		const diff = resetTime - now;
+		if (diff <= 0) return '';
+		const h = Math.floor(diff / (1000 * 60 * 60));
+		const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+		return `Wait ${h}h ${m}m`;
+	};
 
 	// Reactive calculation for max EXP required for the current level
 	$: maxExpForLevel = getRequiredExp(editLv);
@@ -82,6 +98,14 @@
 	 * Handles file selection for OCR scan.
 	 */
 	function onFileSelect(e) {
+		// Update quota check
+		scanQuota = storage.checkScanQuota();
+		if (!scanQuota.allowed && !config.dev.isDev) {
+			alert('Daily scan limit reached (3/3). Please try again tomorrow or enter manually.');
+			e.target.value = '';
+			return;
+		}
+
 		const file = e.target.files[0];
 		if (!file) return;
 
@@ -203,10 +227,22 @@
 			<!-- SCAN (AI) -->
 			<button
 				on:click={onScan}
-				class="flex flex-col items-center justify-center gap-1 rounded-xl bg-slate-100 py-3 text-cyan-600 shadow-sm ring-1 ring-slate-200 transition-all hover:bg-cyan-50 active:scale-95"
+				disabled={!scanQuota.allowed && !config.dev.isDev}
+				class="flex flex-col items-center justify-center gap-1 rounded-xl bg-slate-100 py-3 text-cyan-600 shadow-sm ring-1 ring-slate-200 transition-all hover:bg-cyan-50 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
 			>
 				<Scan size={20} />
-				<span class="text-xs font-bold">AI Scan</span>
+				<div class="flex flex-col items-center leading-none">
+					<span class="text-xs font-bold">AI Scan</span>
+					{#if !config.dev.isDev}
+						{#if !scanQuota.allowed}
+							<span class="text-[9px] font-bold text-rose-500"
+								>{getWaitTimeText(scanQuota.resetTime)}</span
+							>
+						{:else}
+							<span class="text-[9px] text-cyan-600/70">({scanQuota.remaining}/3 left)</span>
+						{/if}
+					{/if}
+				</div>
 			</button>
 
 			<!-- MAX -->
@@ -269,6 +305,12 @@
 						isScanning = true;
 						scanError = '';
 						formData.append('image', selectedFile);
+
+						// Increment scan usage immediately on attempt to prevent spam
+						if (!config.dev.isDev) {
+							storage.incrementScan();
+							scanQuota = storage.checkScanQuota();
+						}
 
 						return async ({ result }) => {
 							isScanning = false;
