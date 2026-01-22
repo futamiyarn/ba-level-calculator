@@ -45,17 +45,12 @@
 
 	<div class="flex flex-col">
 		<!-- Natural Regen -->
-		<div
-			class={`flex flex-col border-b border-slate-50 px-5 py-3 transition-opacity last:border-0 ${baseApValue > 0 ? 'opacity-100' : 'opacity-40 grayscale'}`}
-		>
+		<div class="flex flex-col border-b border-slate-50 px-5 py-3 transition-opacity last:border-0">
 			<div class="flex items-center justify-between">
 				<div class="flex items-center gap-3">
 					<Clock size={20} class="text-slate-400" />
 					<div class="flex items-center gap-1.5">
-						<span
-							class={`text-sm font-medium ${baseApValue > 0 ? 'text-slate-700' : 'text-slate-500'}`}
-							>Natural Regen</span
-						>
+						<span class="text-sm font-medium text-slate-700">Natural Regen</span>
 						<button
 							on:click={(e) => toggleInfo('regen', e)}
 							class="text-slate-300 transition-colors hover:text-cyan-500"
@@ -100,9 +95,7 @@
 						class={`transition-colors ${config.cafeRank > 0 ? 'text-orange-400' : 'text-slate-300 grayscale'}`}
 					/>
 					<div class="flex items-center gap-1.5">
-						<span
-							class={`text-sm font-medium transition-colors ${config.cafeRank > 0 ? 'text-slate-700' : 'text-slate-500'}`}
-							>Cafe Production</span
+						<span class="text-sm font-medium text-slate-700 transition-colors">Cafe Production</span
 						>
 						<button
 							on:click={(e) => toggleInfo('cafe', e)}
@@ -156,7 +149,7 @@
 		</div>
 
 		<!-- Radio Items -->
-		{#each [{ key: 'diaryTask', label: 'Daily Missions', ap: 150, ep: 120, desc: 'Daily Login (100 AP), Clear 2 Lessons (50 AP), Clear one of 11 random tasks (50 EP), Clear 5 Tasks (100 EP).' }, { key: 'weeklyTask', label: 'Weekly Tasks', ap: 350, ep: 300, desc: '' }, { key: 'loginBonus', label: 'Login Bonus', ap: 55, ep: 0, desc: 'Get 50 and 100 AP on a 10-day login cycle.' }, { key: 'clubLogin', label: 'Club Check-in', ap: 10, ep: 0, desc: 'Visit your joined club and claim from the inbox.' }] as item}
+		{#each [{ key: 'diaryTask', label: 'Daily Missions', ap: 150, ep: 120, desc: 'Login Daily (100 AP), Hold 2 lesson schedule (50 AP), Clear 1 of 11 random tasks (club, shop, commisions, etc) (20 EP), Clear 5 daily task (100 EP).' }, { key: 'weeklyTask', label: 'Weekly Tasks', ap: 350, ep: 300, desc: 'Login 5 Days in a Week (200 AP), Hold 9 lesson scedule (150 AP), Clear 6 weekly task (300 EP).' }, { key: 'loginBonus', label: 'Login Bonus', ap: 55, ep: 0, desc: 'Get 50 and 100 AP on a 10-day login cycle.' }, { key: 'clubLogin', label: 'Club Check-in', ap: 10, ep: 0, desc: 'Visit your joined club and claim from the inbox.' }] as item}
 			<div
 				class="flex cursor-pointer flex-col justify-between gap-2 border-b border-slate-50 px-5 py-3 transition-colors last:border-0 hover:bg-slate-50 sm:flex-row sm:items-center"
 				on:click={() => (config[item.key] = !config[item.key])}
@@ -169,13 +162,11 @@
 							></div>
 						{:else}
 							<div
-								class="h-5 w-5 flex-shrink-0 rounded-full border-2 border-slate-300 transition-all"
+								class="h-5 w-5 flex-shrink-0 rounded-full border-2 border-slate-400 transition-all"
 							></div>
 						{/if}
 						<div class="flex items-center gap-1.5">
-							<span
-								class={`text-sm font-medium ${config[item.key] ? 'text-slate-800' : 'text-slate-500'}`}
-							>
+							<span class="text-sm font-medium text-slate-700">
 								{item.label}
 							</span>
 							{#if item.desc}
@@ -234,15 +225,10 @@
 
 		<!-- Custom AP Input -->
 		<div class="flex items-center justify-between px-5 py-3">
-			<div
-				class={`flex items-center gap-3 transition-opacity ${config.customAP > 0 ? 'opacity-100' : 'opacity-40 grayscale'}`}
-			>
+			<div class="flex items-center gap-3 transition-opacity">
 				<Edit3 size={20} class="text-slate-400" />
 				<div class="flex flex-col">
-					<span
-						class={`text-sm font-medium ${config.customAP > 0 ? 'text-slate-700' : 'text-slate-500'}`}
-						>Custom Daily AP</span
-					>
+					<span class="text-sm font-medium text-slate-700">Custom Daily AP</span>
 					<span class="text-[10px] text-slate-400">One-time/Extra daily</span>
 				</div>
 			</div>

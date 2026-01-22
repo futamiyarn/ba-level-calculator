@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { Coffee } from 'lucide-svelte';
+	import { goto } from '$app/navigation';
 
 	import EditLevelModal from '$lib/components/views/sensei/SenseiEditLevelModal.svelte';
 	import GeneralConfig from '$lib/components/views/sensei/SenseiGeneralConfig.svelte';
@@ -30,6 +31,7 @@
 	let userData = { lv: 1, exp_current: 0, exp_max: 8 };
 	let targetLv = 90;
 
+	// User configuration state
 	let userConfig = {
 		loginBonus: true,
 		cafeRank: 8,
@@ -43,18 +45,19 @@
 		customAP: 0
 	};
 
-	// UI State
+	// UI visibility state for various cards
 	let isApOpen = false;
 	let isExpOpen = false;
 	let isTargetOpen = false;
 	let isPermitOpen = false;
 
-	// Lifecycle
+	// Load saved data from localStorage on mount
 	onMount(() => {
 		const savedData = storage.loadUserData();
 		if (savedData) {
 			userData = savedData;
 		} else {
+			// Show modal if no data exists
 			showEditModal = true;
 		}
 
@@ -66,26 +69,38 @@
 		isLoaded = true;
 	});
 
-	// Auto-save
+	// Auto-save configuration when it changes
 	$: if (isLoaded && userConfig) {
 		storage.saveUserConfig(userConfig);
 	}
 
-	// Handlers
+	// UI Event Handlers
 	const onEdit = () => {
 		showEditModal = true;
 	};
 
+	/**
+	 * Closes the edit modal.
+	 * If no level data is saved, redirects the user back to the home page.
+	 */
 	const closeEditModal = () => {
-		showEditModal = false;
+		const savedData = storage.loadUserData();
+		if (!savedData) {
+			goto('/');
+		} else {
+			showEditModal = false;
+		}
 	};
 
+	/**
+	 * Processes and saves the final level and EXP data.
+	 */
 	const processFinalData = (lv, curExp) => {
 		let finalLv = parseInt(lv);
 		let finalCur = curExp;
 		let finalMax = 0;
 
-		// Logic for Lv 90
+		// Logic for Max Level (90)
 		if (finalLv >= 90 || curExp === 'MAX') {
 			finalLv = 90;
 			finalCur = 'MAX';
@@ -104,13 +119,16 @@
 		showEditModal = false;
 	};
 
+	/**
+	 * Handles manual submission from the edit modal.
+	 */
 	const onManualSubmit = (event) => {
 		const { lv, cur } = event.detail;
 		const curParsed = cur === '' || cur === null ? 0 : parseInt(cur);
 		if (lv > 0) processFinalData(lv, curParsed);
 	};
 
-	// Calculations
+	// Reactive calculations for the UI
 	$: dailyAP = calculateDailyAP(userConfig, userData.lv);
 	$: calculations = calculateDaysToTarget(userData.lv, userData.exp_current, targetLv, dailyAP);
 	$: permitData = calculateExpertPermit(userData.lv, userConfig, dailyAP);

@@ -38,7 +38,7 @@
 						></div>
 					{:else}
 						<div
-							class="h-5 w-5 flex-shrink-0 rounded-full border-2 border-slate-300 transition-all"
+							class="h-5 w-5 flex-shrink-0 rounded-full border-2 border-slate-400 transition-all"
 						></div>
 					{/if}
 					<div class="flex items-center gap-1.5">
@@ -90,7 +90,7 @@
 					<div class="flex flex-col">
 						<div class="flex items-center gap-1.5">
 							<span
-								class={`flex items-center gap-1 text-sm font-medium transition-colors ${config.pvpRefreshes > 0 ? 'text-slate-800' : 'text-slate-500'}`}
+								class="flex items-center gap-1 text-sm font-medium text-slate-700 transition-colors"
 							>
 								<Coins
 									size={14}
@@ -160,7 +160,7 @@
 					<div class="flex flex-col">
 						<div class="flex items-center gap-1.5">
 							<span
-								class={`flex items-center gap-1 text-sm font-medium transition-colors ${config.pyroRefreshes > 0 ? 'text-slate-800' : 'text-slate-500'}`}
+								class="flex items-center gap-1 text-sm font-medium text-slate-700 transition-colors"
 							>
 								<Gem
 									size={12}

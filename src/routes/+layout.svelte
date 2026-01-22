@@ -1,8 +1,42 @@
 <script>
 	import '../app.css';
 	import Logo from '$lib/components/ui/Logo.svelte';
-	import { Globe, ExternalLink } from 'lucide-svelte';
+	import { Globe, ExternalLink, Check } from 'lucide-svelte';
+	import { slide } from 'svelte/transition';
+
+	let showLangMenu = false;
+	let currentLang = 'EN (US)';
+
+	const languages = [
+		{ code: 'EN (US)', label: 'English (US)', disabled: false },
+		{ code: 'JP', label: 'Japanese', disabled: true },
+		{ code: 'KR', label: 'Korean', disabled: true },
+		{ code: 'TH', label: 'Thailand', disabled: true }
+	];
+
+	/**
+	 * Toggles the visibility of the language selection menu.
+	 */
+	function toggleLangMenu(e) {
+		e.stopPropagation(); // Prevent event from bubbling to window
+		showLangMenu = !showLangMenu;
+	}
+
+	/**
+	 * Selects a language and closes the menu.
+	 */
+	function selectLang(lang) {
+		if (lang.disabled) return;
+		currentLang = lang.code;
+		showLangMenu = false;
+	}
+
+	function closeMenu() {
+		showLangMenu = false;
+	}
 </script>
+
+<svelte:window on:click={closeMenu} />
 
 <div class="relative flex min-h-screen flex-col overflow-hidden bg-slate-50">
 	<!-- Dynamic Background Elements -->
@@ -35,13 +69,44 @@
 
 		<!-- Header Actions -->
 		<div class="flex items-center gap-2">
-			<!-- Country Button Placeholder -->
-			<button
-				class="flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-600 transition-colors hover:bg-slate-200"
-			>
-				<Globe size={14} />
-				<span>Global</span>
-			</button>
+			<!-- Language Selector -->
+			<div class="relative">
+				<button
+					on:click={toggleLangMenu}
+					class="relative z-50 flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-600 transition-colors hover:bg-slate-200"
+				>
+					<Globe size={14} />
+					<span>{currentLang}</span>
+				</button>
+
+				{#if showLangMenu}
+					<!-- Dropdown Menu -->
+					<div
+						transition:slide={{ duration: 200 }}
+						on:click|stopPropagation
+						class="absolute top-full right-0 z-50 mt-2 w-40 overflow-hidden rounded-xl border border-slate-100 bg-white shadow-xl ring-1 ring-black/5"
+					>
+						<div class="flex flex-col p-1">
+							{#each languages as lang}
+								<button
+									on:click={() => selectLang(lang)}
+									disabled={lang.disabled}
+									class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-xs font-medium transition-colors
+									{lang.disabled
+										? 'cursor-not-allowed text-slate-400 opacity-50'
+										: 'text-slate-700 hover:bg-slate-50 active:bg-slate-100'}
+									{currentLang === lang.code && !lang.disabled ? 'bg-cyan-50 text-cyan-700' : ''}"
+								>
+									<span>{lang.label}</span>
+									{#if currentLang === lang.code}
+										<Check size={12} class="text-cyan-600" />
+									{/if}
+								</button>
+							{/each}
+						</div>
+					</div>
+				{/if}
+			</div>
 
 			<!-- External Link -->
 			<a

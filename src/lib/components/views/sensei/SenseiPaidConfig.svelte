@@ -5,7 +5,7 @@
 
 <section class="rounded-[24px] border border-slate-200 bg-white p-1 shadow-sm">
 	<div
-		class="flex items-center gap-2 px-5 py-3 text-[10px] font-bold tracking-widest text-slate-400 uppercase"
+		class="flex items-center gap-2 px-5 py-3 text-[10px] font-bold tracking-widest text-slate-700 uppercase"
 	>
 		<CreditCard size={12} /> Paid Services
 	</div>
@@ -22,7 +22,7 @@
 					></div>
 				{:else}
 					<div
-						class="h-5 w-5 flex-shrink-0 rounded-full border-2 border-slate-300 transition-all"
+						class="h-5 w-5 flex-shrink-0 rounded-full border-2 border-slate-400 transition-all"
 					></div>
 				{/if}
 				<span class="text-sm font-medium text-slate-700">2-Week AP Pack</span>

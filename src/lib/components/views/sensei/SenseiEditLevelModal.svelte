@@ -10,11 +10,11 @@
 
 	const dispatch = createEventDispatcher();
 
-	// State
+	// Component internal state
 	let editLv = currentLv;
 	let editExp = currentExp === 'MAX' ? 0 : currentExp;
 
-	// Scan State
+	// OCR/Scan State
 	let fileInput;
 	let showPreview = false;
 	let previewUrl = '';
@@ -23,45 +23,64 @@
 	let isScanning = false;
 	let scanError = '';
 
-	// Reactive
+	// Reactive calculation for max EXP required for the current level
 	$: maxExpForLevel = getRequiredExp(editLv);
 
-	// Level Logic
+	// Level validation logic: ensure EXP is 0 if level is 90 or above
 	$: if (editLv >= 90) {
 		editExp = 0;
 	} else if (editExp === 'MAX') {
 		editExp = 0;
 	}
 
-	// Lifecycle
-	onMount(() => {
-		// Global Turnstile Callback
-		window.onTurnstileSuccess = () => {
-			isCaptchaVerified = true;
-		};
-	});
+	/**
+	 * Renders the Cloudflare Turnstile widget for security.
+	 */
+	function turnstileWidget(node) {
+		if (window.turnstile) {
+			window.turnstile.render(node, {
+				sitekey: config.security.turnstileSiteKey,
+				callback: () => {
+					isCaptchaVerified = true;
+				}
+			});
+		}
+	}
 
-	// Actions
+	/**
+	 * Sets the level to maximum (90).
+	 */
 	function onMax() {
 		editLv = 90;
 		editExp = 0;
 	}
 
+	/**
+	 * Submits the edited level and EXP data.
+	 */
 	function onOk() {
 		const val = editExp === '' || editExp === null ? 0 : editExp;
 		const finalExp = editLv >= 90 ? 'MAX' : val === 0 ? 1 : val;
 		dispatch('submit', { lv: editLv, cur: finalExp });
 	}
 
+	/**
+	 * Dispatches a close event to the parent component.
+	 */
 	function onClose() {
 		dispatch('close');
 	}
 
-	// Scan Actions
+	/**
+	 * Triggers the hidden file input for scanning.
+	 */
 	function onScan() {
 		fileInput.click();
 	}
 
+	/**
+	 * Handles file selection for OCR scan.
+	 */
 	function onFileSelect(e) {
 		const file = e.target.files[0];
 		if (!file) return;
@@ -72,10 +91,13 @@
 		isCaptchaVerified = config.dev.isDev; // Bypass captcha in dev mode
 		scanError = '';
 
-		// Reset input
+		// Reset input value to allow selecting the same file again
 		e.target.value = '';
 	}
 
+	/**
+	 * Closes the scan preview modal and cleans up resources.
+	 */
 	function closePreview() {
 		showPreview = false;
 		if (previewUrl) URL.revokeObjectURL(previewUrl);
@@ -84,7 +106,9 @@
 		scanError = '';
 	}
 
-	// Input Handlers
+	/**
+	 * Handles input changes for the EXP field with validation.
+	 */
 	function handleExpInput(e) {
 		if (editLv >= 90) return;
 
@@ -96,7 +120,7 @@
 		editExp = isNaN(val) ? 0 : val;
 	}
 
-	// UX Helpers
+	// UX Helpers for better input interaction
 	function onExpFocus() {
 		if (editLv < 90 && editExp === 0) editExp = '';
 	}
@@ -226,11 +250,13 @@
 				<!-- Turnstile -->
 				{#if !config.dev.isDev}
 					<div class="mb-4 flex justify-center">
-						<div
-							class="cf-turnstile"
-							data-sitekey={config.security.turnstileSiteKey}
-							data-callback="onTurnstileSuccess"
-						></div>
+						<div use:turnstileWidget></div>
+					</div>
+				{:else}
+					<div class="mb-4 flex justify-center">
+						<div class="rounded bg-yellow-100 px-2 py-1 text-[10px] text-yellow-700">
+							Dev Mode: Captcha Bypassed
+						</div>
 					</div>
 				{/if}
 
