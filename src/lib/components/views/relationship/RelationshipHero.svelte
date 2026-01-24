@@ -1,6 +1,6 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
-	import { User, School } from 'lucide-svelte';
+	import { User, School, Star } from 'lucide-svelte';
 	import HeroCard from '$lib/components/ui/HeroCard.svelte';
 
 	export let student;
@@ -71,11 +71,12 @@
 					/>
 				</div>
 				<div
-					class="absolute -right-1 -bottom-1 flex h-8 w-8 items-center justify-center rounded-full border-2 border-slate-900 font-bold text-white shadow-lg {getRarityColor(
+					class="absolute -right-1 -bottom-1 flex h-8 w-8 items-center justify-center gap-0.5 rounded-full border-2 border-slate-900 font-bold text-white shadow-lg {getRarityColor(
 						student.rarity
 					)}"
 				>
-					{student.rarity}★
+					<span class="text-sm">{student.rarity}</span>
+					<Star size={10} class="fill-current" />
 				</div>
 			</button>
 
