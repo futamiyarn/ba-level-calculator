@@ -54,7 +54,11 @@
 
 		<div class="relative z-10 flex flex-col items-center gap-6 sm:flex-row">
 			<!-- Hero Image -->
-			<div class="relative flex-shrink-0">
+			<button
+				class="relative flex-shrink-0 cursor-pointer transition-transform active:scale-95"
+				on:click={openModal}
+				title="Change Student"
+			>
 				<div
 					class="h-28 w-28 overflow-hidden rounded-full border-4 border-white/10 p-1 {getRarityColor(
 						student.rarity
@@ -67,11 +71,13 @@
 					/>
 				</div>
 				<div
-					class="absolute -right-1 -bottom-1 flex h-8 w-8 items-center justify-center rounded-full border-2 border-slate-900 bg-white font-bold text-slate-900 shadow-lg"
+					class="absolute -right-1 -bottom-1 flex h-8 w-8 items-center justify-center rounded-full border-2 border-slate-900 font-bold text-white shadow-lg {getRarityColor(
+						student.rarity
+					)}"
 				>
 					{student.rarity}★
 				</div>
-			</div>
+			</button>
 
 			<!-- Hero Info -->
 			<div class="flex-1 text-center sm:text-left">
