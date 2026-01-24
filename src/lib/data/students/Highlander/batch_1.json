@@ -1,0 +1,35 @@
+[
+	{
+		"id": 10117,
+		"name": "Hikari",
+		"school": "Highlander",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5008, 5104],
+			"liked": [5011, 5004, 5026, 5012, 5013, 5016]
+		}
+	},
+	{
+		"id": 10118,
+		"name": "Nozomi",
+		"school": "Highlander",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5018, 5112],
+			"liked": [5022, 5010, 5025, 5017, 5029, 5103, 5020, 5030, 5019]
+		}
+	},
+	{
+		"id": 16017,
+		"name": "Aoba",
+		"school": "Highlander",
+		"rarity": 1,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5027, 5109],
+			"liked": [5024, 5033, 5021, 5110, 5107]
+		}
+	}
+]

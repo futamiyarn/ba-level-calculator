@@ -1,10 +1,14 @@
 <script>
 	import { onMount } from 'svelte';
-	import { fly } from 'svelte/transition';
 	import { Coffee, Info } from 'lucide-svelte';
 	import { goto } from '$app/navigation';
 
+	import PageContainer from '$lib/components/ui/PageContainer.svelte';
+	import PageHeader from '$lib/components/ui/PageHeader.svelte';
+	import SectionHeader from '$lib/components/ui/SectionHeader.svelte';
+	import HeroCard from '$lib/components/ui/HeroCard.svelte';
 	import EditLevelModal from '$lib/components/views/sensei/SenseiEditLevelModal.svelte';
+	import HeaderButton from '$lib/components/ui/HeaderButton.svelte';
 	import InfoModal from '$lib/components/views/sensei/SenseiInfoModal.svelte';
 	import GeneralConfig from '$lib/components/views/sensei/SenseiGeneralConfig.svelte';
 	import ShopConfig from '$lib/components/views/sensei/SenseiShopConfig.svelte';
@@ -159,14 +163,10 @@
 	<title>Sensei Leveler | BA Tools</title>
 </svelte:head>
 
-<div in:fly={{ y: 20, duration: 600 }} class="mx-auto max-w-xl space-y-4 pb-24">
+<PageContainer>
 	<!-- Top Bar -->
-	<div class="flex items-center justify-between px-4 pt-4">
-		<h2 class="text-2xl font-normal text-slate-800">Sensei Leveler</h2>
-		<button
-			on:click={onEdit}
-			class="flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-xs font-bold tracking-wider text-slate-600 uppercase transition-colors hover:bg-cyan-100 hover:text-cyan-600"
-		>
+	<PageHeader title="Sensei Leveler">
+		<HeaderButton onClick={onEdit}>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="14"
@@ -179,60 +179,60 @@
 				stroke-linejoin="round"
 				><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" /><path d="m15 5 4 4" /></svg
 			> <span>Edit Level</span>
-		</button>
-	</div>
+		</HeaderButton>
+	</PageHeader>
 
 	<!-- Hero -->
-	<div
-		class="group relative mx-1 overflow-hidden rounded-[32px] bg-slate-900 p-6 text-white shadow-xl"
-	>
-		<!-- Background Effects -->
-		<div
-			class="absolute top-0 right-0 -mt-16 -mr-16 h-64 w-64 rounded-full bg-cyan-500/20 blur-3xl transition-colors duration-700 group-hover:bg-cyan-400/30"
-		></div>
-		<div
-			class="absolute bottom-0 left-0 -mb-10 -ml-10 h-40 w-40 rounded-full bg-blue-600/30 blur-2xl"
-		></div>
-
-		<div class="relative z-10 py-2 text-center">
+	<div class="px-1">
+		<HeroCard>
+			<!-- Background Effects -->
 			<div
-				class="mb-2 flex items-center justify-center gap-2 text-[10px] font-bold tracking-widest text-cyan-400 uppercase"
-			>
-				<span>Current Status</span>
-				<button
-					on:click={() => (showInfoModal = true)}
-					class="text-cyan-500/50 transition-colors hover:text-cyan-400"
-				>
-					<Info size={14} />
-				</button>
-			</div>
-			<div class="flex items-baseline justify-center gap-1">
-				<span class="text-7xl font-bold tracking-tighter">{userData.lv}</span>
-				<span class="text-xl font-light text-slate-500">/ 90</span>
-			</div>
+				class="absolute top-0 right-0 -mt-16 -mr-16 h-64 w-64 rounded-full bg-cyan-500/20 blur-3xl transition-colors duration-700 group-hover:bg-cyan-400/30"
+			></div>
+			<div
+				class="absolute bottom-0 left-0 -mb-10 -ml-10 h-40 w-40 rounded-full bg-blue-600/30 blur-2xl"
+			></div>
 
-			<!-- EXP Bar -->
-			{#if userData.exp_current !== 'MAX'}
-				<div class="mx-auto mt-4 max-w-[200px] space-y-1">
-					<div class="h-2 overflow-hidden rounded-full bg-slate-800 ring-1 ring-white/10">
-						<div
-							class="relative h-full bg-cyan-400 transition-all duration-1000"
-							style={`width: ${(userData.exp_current / userData.exp_max) * 100}%`}
-						></div>
-					</div>
-					<div class="flex justify-between px-1 font-mono text-[10px] text-slate-400">
-						<span>{userData.exp_current.toLocaleString()}</span>
-						<span>{userData.exp_max.toLocaleString()}</span>
-					</div>
-				</div>
-			{:else}
+			<div class="relative z-10 py-2 text-center">
 				<div
-					class="mt-4 inline-block rounded-full border border-cyan-500/50 bg-cyan-500/20 px-3 py-1 text-xs font-bold text-cyan-300"
+					class="mb-2 flex items-center justify-center gap-2 text-[10px] font-bold tracking-widest text-cyan-400 uppercase"
 				>
-					MAX LEVEL REACHED
+					<span>Current Status</span>
+					<button
+						on:click={() => (showInfoModal = true)}
+						class="text-cyan-500/50 transition-colors hover:text-cyan-400"
+					>
+						<Info size={14} />
+					</button>
 				</div>
-			{/if}
-		</div>
+				<div class="flex items-baseline justify-center gap-1">
+					<span class="text-7xl font-bold tracking-tighter">{userData.lv}</span>
+					<span class="text-xl font-light text-slate-500">/ 90</span>
+				</div>
+
+				<!-- EXP Bar -->
+				{#if userData.exp_current !== 'MAX'}
+					<div class="mx-auto mt-4 max-w-[200px] space-y-1">
+						<div class="h-2 overflow-hidden rounded-full bg-slate-800 ring-1 ring-white/10">
+							<div
+								class="relative h-full bg-cyan-400 transition-all duration-1000"
+								style={`width: ${(userData.exp_current / userData.exp_max) * 100}%`}
+							></div>
+						</div>
+						<div class="flex justify-between px-1 font-mono text-[10px] text-slate-400">
+							<span>{userData.exp_current.toLocaleString()}</span>
+							<span>{userData.exp_max.toLocaleString()}</span>
+						</div>
+					</div>
+				{:else}
+					<div
+						class="mt-4 inline-block rounded-full border border-cyan-500/50 bg-cyan-500/20 px-3 py-1 text-xs font-bold text-cyan-300"
+					>
+						MAX LEVEL REACHED
+					</div>
+				{/if}
+			</div>
+		</HeroCard>
 	</div>
 
 	<IncomeAPCard bind:isOpen={isApOpen} {dailyAP} {weeklyAPEstimate} />
@@ -256,23 +256,16 @@
 	<!-- Config -->
 	<div class="space-y-4 pb-4">
 		<!-- Title -->
-		<div class="px-2 pt-2 pb-2">
-			<h2 class="flex items-center gap-3 text-xl font-normal text-slate-800">
-				<div
-					class="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-100 text-cyan-800"
-				>
-					<Coffee size={20} />
-				</div>
-				<span>AP Configuration</span>
-			</h2>
-		</div>
+		<SectionHeader title="AP Configuration" iconColorClass="bg-cyan-100 text-cyan-800">
+			<Coffee slot="icon" size={20} />
+		</SectionHeader>
 
 		<!-- Components -->
 		<GeneralConfig bind:config={userConfig} level={userData.lv} />
 		<ShopConfig bind:config={userConfig} />
 		<PaidConfig bind:config={userConfig} />
 	</div>
-</div>
+</PageContainer>
 
 {#if showEditModal}
 	<EditLevelModal

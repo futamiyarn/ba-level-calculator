@@ -13,17 +13,17 @@
 				},
 				{
 					label: 'Student Leveling',
-					href: '#',
+					href: '/student',
 					icon: '🎓',
-					desc: 'Calculate Activity Reports and Credits needed. (Coming Soon)',
-					disabled: true
+					desc: 'Calculate Activity Reports and Credits needed.',
+					disabled: false
 				},
 				{
 					label: 'Relationship Level',
-					href: '#',
+					href: '/relationship',
 					icon: '💖',
-					desc: 'Calculate gifts and AP for bond levels. (Coming Soon)',
-					disabled: true
+					desc: 'Calculate gifts and AP for bond levels.',
+					disabled: false
 				}
 			]
 		}

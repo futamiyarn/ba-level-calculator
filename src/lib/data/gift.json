@@ -1,0 +1,300 @@
+{
+	"items": [
+		{
+			"id": 5000,
+			"name": "Wavecat Pillow",
+			"rarity": "rare"
+		},
+		{
+			"id": 5001,
+			"name": "Peroro Wheel",
+			"rarity": "rare",
+			"alias": ["Peroro Doll"]
+		},
+		{
+			"id": 5002,
+			"name": "A-Pods Pro",
+			"rarity": "rare"
+		},
+		{
+			"id": 5003,
+			"name": "Forbidden Love: Its Beauty Lies in Its Illicitness",
+			"rarity": "rare",
+			"alias": ["Forbidden Love ~Beautiful Sin~", "Forbidden Love"]
+		},
+		{
+			"id": 5004,
+			"name": "Hitgirls Gaming Magazine",
+			"rarity": "rare",
+			"alias": ["Game Magazine"]
+		},
+		{
+			"id": 5005,
+			"name": "Cherry-Rose Lip Gloss",
+			"rarity": "rare"
+		},
+		{
+			"id": 5006,
+			"name": "Glassy Glow BB Cream",
+			"rarity": "rare"
+		},
+		{
+			"id": 5007,
+			"name": "Military Camo Foundation Trio",
+			"rarity": "rare"
+		},
+		{
+			"id": 5008,
+			"name": "Fine Cookie Set",
+			"rarity": "rare",
+			"alias": ["Luxury Cookie Set"]
+		},
+		{
+			"id": 5009,
+			"name": "Guns, Charm, and Zeal",
+			"rarity": "rare",
+			"alias": ["Gun, Cute & Youth"]
+		},
+		{
+			"id": 5010,
+			"name": "Astronomical Telescope",
+			"rarity": "rare"
+		},
+		{
+			"id": 5011,
+			"name": "Gamegirl Color Replica",
+			"rarity": "rare",
+			"alias": ["Game Girl Color", "Game Girl"]
+		},
+		{
+			"id": 5012,
+			"name": "MX-Ration C-Type Dessert Flavor",
+			"rarity": "rare"
+		},
+		{
+			"id": 5013,
+			"name": "Matcha Ramune",
+			"rarity": "rare"
+		},
+		{
+			"id": 5014,
+			"name": "Jellies Cushion",
+			"rarity": "rare",
+			"alias": ["Jellies Pillow"]
+		},
+		{
+			"id": 5015,
+			"name": "Extraordinary Cottontail Detective: Case of the Misty Hot Spring Slide",
+			"rarity": "rare",
+			"alias": [
+				"Jumping Detective Rabbit ~A trip through the misty hot springs~",
+				"Leaping Detective Rabbit"
+			]
+		},
+		{
+			"id": 5016,
+			"name": "Ring Bit",
+			"rarity": "rare"
+		},
+		{
+			"id": 5017,
+			"name": "Buried Treasure Map",
+			"rarity": "rare"
+		},
+		{
+			"id": 5018,
+			"name": "Cosplayer Coke-Bottle Glasses",
+			"rarity": "rare",
+			"alias": ["Cosplay Glasses"]
+		},
+		{
+			"id": 5019,
+			"name": "World's Most Useless Gadget",
+			"rarity": "rare",
+			"alias": ["World's Most Useless Machine"]
+		},
+		{
+			"id": 5020,
+			"name": "Teddy Bear with Bow",
+			"rarity": "rare"
+		},
+		{
+			"id": 5021,
+			"name": "Movie Ticket",
+			"rarity": "rare"
+		},
+		{
+			"id": 5022,
+			"name": "30-Color Paint Set",
+			"rarity": "rare"
+		},
+		{
+			"id": 5023,
+			"name": "Classical Poetry Anthology",
+			"rarity": "rare"
+		},
+		{
+			"id": 5024,
+			"name": "Cute Dishware Set",
+			"rarity": "rare",
+			"alias": ["Cute Tableware Set"]
+		},
+		{
+			"id": 5025,
+			"name": "Brain Teaser Puzzle Cube",
+			"rarity": "rare",
+			"alias": ["Cube Puzzle"]
+		},
+		{
+			"id": 5026,
+			"name": "Large Whole Cake",
+			"rarity": "rare",
+			"alias": ["Big Whole Cake"]
+		},
+		{
+			"id": 5027,
+			"name": "Luxury Buffet Ticket",
+			"rarity": "rare",
+			"alias": ["Buffet Ticket"]
+		},
+		{
+			"id": 5028,
+			"name": "Potted Bug-Eating Plant",
+			"rarity": "rare",
+			"alias": ["Flowerpot"]
+		},
+		{
+			"id": 5029,
+			"name": "Extravagant Gilded Jar of Greed",
+			"rarity": "rare",
+			"alias": ["Extravagant Gilded Jar of Honey"]
+		},
+		{
+			"id": 5030,
+			"name": "Wind-Up Music Box",
+			"rarity": "rare"
+		},
+		{
+			"id": 5031,
+			"name": "Embroidered Handkerchief",
+			"rarity": "rare",
+			"alias": ["Intricate Embroidery"]
+		},
+		{
+			"id": 5032,
+			"name": "Encyclopedia",
+			"rarity": "rare"
+		},
+		{
+			"id": 5033,
+			"name": "Health Food Supplement",
+			"rarity": "rare"
+		},
+		{
+			"id": 5034,
+			"name": "Summer Floaty",
+			"rarity": "rare",
+			"alias": ["Summer Tube"]
+		},
+		{
+			"id": 5100,
+			"name": "Lace Pillow",
+			"rarity": "epic"
+		},
+		{
+			"id": 5101,
+			"name": "Streets of Thugs Vol. 1",
+			"rarity": "epic"
+		},
+		{
+			"id": 5102,
+			"name": "Samuela \"The Beyond\"",
+			"rarity": "epic",
+			"alias": ["The Beyond"]
+		},
+		{
+			"id": 5103,
+			"name": "Antique Egg Handicraft",
+			"rarity": "epic",
+			"alias": ["Retro Jewelled Egg"]
+		},
+		{
+			"id": 5104,
+			"name": "Mille-Feuille Traditional Parfait",
+			"rarity": "epic"
+		},
+		{
+			"id": 5105,
+			"name": "Airbook Rare",
+			"rarity": "epic",
+			"alias": ["I-book Rare"]
+		},
+		{
+			"id": 5106,
+			"name": "Sophisticated Hairbrush",
+			"rarity": "epic",
+			"alias": ["Fashionable Comb", "Stylish Comb"]
+		},
+		{
+			"id": 5107,
+			"name": "Nutrient-Packed Multivitamin Gummies",
+			"rarity": "epic",
+			"alias": ["Nutrient-rich Multivitamin Jellies"]
+		},
+		{
+			"id": 5108,
+			"name": "Finest Maple Bonsai",
+			"rarity": "epic",
+			"alias": ["Fine Maple Bonsai"]
+		},
+		{
+			"id": 5109,
+			"name": "Sewing Kit",
+			"rarity": "epic"
+		},
+		{
+			"id": 5110,
+			"name": "Music Concert Ticket",
+			"rarity": "epic"
+		},
+		{
+			"id": 5111,
+			"name": "Three Times a Day Dumbbell Set",
+			"rarity": "epic",
+			"alias": ["Thrice-a-day Dumbbell Set", "Dumbbell Set"]
+		},
+		{
+			"id": 5112,
+			"name": "Board Game \"The Life\"",
+			"rarity": "epic",
+			"alias": ["The Life Board Game", "\"The Life\" Board Game"]
+		},
+		{
+			"id": 5996,
+			"name": "Refreshing Bouquet",
+			"rarity": "epic"
+		},
+		{
+			"id": 5997,
+			"name": "Beautiful Bouquet",
+			"rarity": "epic"
+		},
+		{
+			"id": 5998,
+			"name": "Hatsune Miku Photo Card",
+			"rarity": "epic"
+		},
+		{
+			"id": 5999,
+			"name": "Shiny Bouquet",
+			"rarity": "epic",
+			"alias": ["Glittering Bouquet"]
+		},
+		{
+			"id": "nexon30",
+			"name": "Nexon 30-Year Anniversary Commemorative Card",
+			"rarity": "epic",
+			"path": "nexon_30_anniversary.png"
+		}
+	]
+}

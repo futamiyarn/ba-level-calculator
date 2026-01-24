@@ -38,7 +38,7 @@
 
 <svelte:window on:click={closeMenu} />
 
-<div class="relative flex min-h-screen flex-col overflow-hidden bg-slate-50">
+<div class="relative flex min-h-screen flex-col overflow-x-hidden bg-slate-50">
 	<!-- Dynamic Background Elements -->
 	<div class="pointer-events-none fixed inset-0 z-0 overflow-hidden">
 		<!-- Large Soft Gradient -->

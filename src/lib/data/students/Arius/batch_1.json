@@ -1,0 +1,112 @@
+[
+	{
+		"id": 10041,
+		"name": "Misaki",
+		"school": "Arius",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5100, 5020],
+			"liked": []
+		}
+	},
+	{
+		"id": 10042,
+		"name": "Atsuko",
+		"school": "Arius",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5032, 5112],
+			"liked": [5033]
+		}
+	},
+	{
+		"id": 10048,
+		"name": "Saori",
+		"school": "Arius",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5005, 5006],
+			"liked": [5007, 5102]
+		}
+	},
+	{
+		"id": 10101,
+		"name": "Saori (Swimsuit)",
+		"school": "Arius",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5005, 5006, 5007, 5106, 5034],
+			"liked": [5012, 5102]
+		}
+	},
+	{
+		"id": 10102,
+		"name": "Hiyori (Swimsuit)",
+		"school": "Arius",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5003, 5026, 5104, 5034],
+			"liked": [5027, 5008, 5012, 5013]
+		}
+	},
+	{
+		"id": 10116,
+		"name": "Saori (Dress)",
+		"school": "Arius",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5005, 5106],
+			"liked": [5031, 5006, 5007, 5102]
+		}
+	},
+	{
+		"id": 10130,
+		"name": "Subaru",
+		"school": "Arius",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5017, 5026, 5110, 5030],
+			"liked": [5002, 5005, 5029, 5012, 5007, 5103, 5019]
+		}
+	},
+	{
+		"id": 20017,
+		"name": "Hiyori",
+		"school": "Arius",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5024],
+			"liked": [5109]
+		}
+	},
+	{
+		"id": 20049,
+		"name": "Misaki (Swimsuit)",
+		"school": "Arius",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5106, 5034, 5020],
+			"liked": [5031]
+		}
+	},
+	{
+		"id": 26013,
+		"name": "Atsuko (Swimsuit)",
+		"school": "Arius",
+		"rarity": 1,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5023, 5032, 5034, 5112, 5018, 5029, 5003, 5009, 5033, 5004, 5015, 5028, 5101],
+			"liked": []
+		}
+	}
+]

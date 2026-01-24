@@ -1,0 +1,167 @@
+[
+	{
+		"id": 10017,
+		"name": "Cherino",
+		"school": "RedWinter",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5029],
+			"liked": [5017, 5018, 5026, 5028, 5103, 5030, 5019]
+		}
+	},
+	{
+		"id": 10037,
+		"name": "Marina",
+		"school": "RedWinter",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5020],
+			"liked": [5017, 5029, 5103, 5030, 5019]
+		}
+	},
+	{
+		"id": 10055,
+		"name": "Shigure",
+		"school": "RedWinter",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5033, 5107],
+			"liked": [5032]
+		}
+	},
+	{
+		"id": 10075,
+		"name": "Meru",
+		"school": "RedWinter",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5022, 5112, 5010, 5025, 5023, 5018, 5032, 5003, 5009, 5004, 5015, 5101, 5020],
+			"liked": []
+		}
+	},
+	{
+		"id": 10103,
+		"name": "Marina (Qipao)",
+		"school": "RedWinter",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5106, 5020],
+			"liked": [5022, 5010, 5025, 5017, 5018, 5029, 5103, 5112, 5030, 5019]
+		}
+	},
+	{
+		"id": 10131,
+		"name": "Takane",
+		"school": "RedWinter",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5023, 5031, 5009, 5110, 5032, 5003, 5004, 5015, 5101],
+			"liked": []
+		}
+	},
+	{
+		"id": 13013,
+		"name": "Momiji",
+		"school": "RedWinter",
+		"rarity": 2,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5003, 5101],
+			"liked": [5005, 5023, 5032, 5009, 5004, 5015]
+		}
+	},
+	{
+		"id": 16007,
+		"name": "Tomoe",
+		"school": "RedWinter",
+		"rarity": 1,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5023, 5103],
+			"liked": [5031, 5009]
+		}
+	},
+	{
+		"id": 20009,
+		"name": "Cherino (Hot Spring)",
+		"school": "RedWinter",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5017, 5103],
+			"liked": [5018, 5029, 5028]
+		}
+	},
+	{
+		"id": 20010,
+		"name": "Nodoka (Hot Spring)",
+		"school": "RedWinter",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5027],
+			"liked": [5010, 5026, 5008, 5012, 5013, 5104, 5021, 5110]
+		}
+	},
+	{
+		"id": 20026,
+		"name": "Minori",
+		"school": "RedWinter",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5032, 5009, 5107, 5023, 5003, 5033, 5004, 5015, 5101],
+			"liked": []
+		}
+	},
+	{
+		"id": 20031,
+		"name": "Shigure (Hot Spring)",
+		"school": "RedWinter",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5033, 5107],
+			"liked": [5032]
+		}
+	},
+	{
+		"id": 20038,
+		"name": "Tomoe (Qipao)",
+		"school": "RedWinter",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5005, 5102, 5023, 5031, 5032, 5003, 5009, 5004, 5015, 5101, 5106],
+			"liked": []
+		}
+	},
+	{
+		"id": 20052,
+		"name": "Yakumo",
+		"school": "RedWinter",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5029, 5103, 5017, 5023, 5032, 5003, 5009, 5004, 5015, 5101, 5030, 5019],
+			"liked": []
+		}
+	},
+	{
+		"id": 26006,
+		"name": "Nodoka",
+		"school": "RedWinter",
+		"rarity": 1,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5010],
+			"liked": [5026, 5008, 5012, 5013, 5104]
+		}
+	}
+]

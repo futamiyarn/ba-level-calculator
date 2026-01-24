@@ -1,0 +1,555 @@
+[
+	{
+		"id": 10003,
+		"name": "Hifumi",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 8,
+		"item": {
+			"love": [5001, 5102],
+			"liked": [5000]
+		}
+	},
+	{
+		"id": 10013,
+		"name": "Tsurugi",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5003, 5106],
+			"liked": []
+		}
+	},
+	{
+		"id": 10019,
+		"name": "Azusa",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5020],
+			"liked": [5031, 5001, 5106, 5000]
+		}
+	},
+	{
+		"id": 10020,
+		"name": "Koharu",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5005, 5003],
+			"liked": [5006, 5015, 5007, 5102]
+		}
+	},
+	{
+		"id": 10021,
+		"name": "Azusa (Swimsuit)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5106, 5034, 5020],
+			"liked": [5001, 5000]
+		}
+	},
+	{
+		"id": 10029,
+		"name": "Natsu",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5017],
+			"liked": [5026, 5008, 5012, 5013, 5104]
+		}
+	},
+	{
+		"id": 10035,
+		"name": "Ui",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5023, 5009, 5103, 5032, 5003, 5004, 5015, 5101],
+			"liked": []
+		}
+	},
+	{
+		"id": 10036,
+		"name": "Hinata",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5028, 5109],
+			"liked": [5031, 5108]
+		}
+	},
+	{
+		"id": 10049,
+		"name": "Kazusa",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5008],
+			"liked": [5005, 5026, 5012, 5013, 5104]
+		}
+	},
+	{
+		"id": 10054,
+		"name": "Mari (Track)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5031, 5106],
+			"liked": [5108, 5028]
+		}
+	},
+	{
+		"id": 10056,
+		"name": "Serina (Christmas)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5014, 5100],
+			"liked": [5033, 5107, 5000]
+		}
+	},
+	{
+		"id": 10058,
+		"name": "Mine",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5005, 5102],
+			"liked": [5006, 5007]
+		}
+	},
+	{
+		"id": 10059,
+		"name": "Mika",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5006, 5104],
+			"liked": [5005, 5026, 5008, 5012, 5013, 5007, 5102]
+		}
+	},
+	{
+		"id": 10061,
+		"name": "Sakurako",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5026, 5104],
+			"liked": [5008, 5012, 5013]
+		}
+	},
+	{
+		"id": 10068,
+		"name": "Reisa",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5002, 5104],
+			"liked": [5011, 5105, 5026, 5008, 5012, 5013, 5030]
+		}
+	},
+	{
+		"id": 10073,
+		"name": "Ui (Swimsuit)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5017, 5023, 5009, 5101, 5034, 5032, 5003, 5004, 5015],
+			"liked": []
+		}
+	},
+	{
+		"id": 10074,
+		"name": "Hanako (Swimsuit)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5006, 5106, 5034],
+			"liked": [5005, 5031, 5007, 5102]
+		}
+	},
+	{
+		"id": 10077,
+		"name": "Ichika",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5005, 5102],
+			"liked": [5002, 5031, 5011, 5006, 5105, 5007, 5106]
+		}
+	},
+	{
+		"id": 10091,
+		"name": "Kazusa (Band)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5026, 5008, 5104],
+			"liked": [5002, 5012, 5013, 5030]
+		}
+	},
+	{
+		"id": 10092,
+		"name": "Yoshimi (Band)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5026, 5008, 5104],
+			"liked": [5005, 5012, 5013]
+		}
+	},
+	{
+		"id": 10105,
+		"name": "Mari (Pop Idol)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5024, 5031, 5109],
+			"liked": []
+		}
+	},
+	{
+		"id": 10106,
+		"name": "Sakurako (Pop Idol)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5033, 5104, 5023, 5018, 5032, 5029, 5003, 5009, 5004, 5015, 5028, 5101, 5019],
+			"liked": []
+		}
+	},
+	{
+		"id": 10110,
+		"name": "Seia",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5023, 5101, 5018, 5032, 5029, 5003, 5009, 5004, 5015, 5028],
+			"liked": []
+		}
+	},
+	{
+		"id": 10120,
+		"name": "Natsu (Band)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5026, 5008, 5104],
+			"liked": [5017, 5012, 5013]
+		}
+	},
+	{
+		"id": 10122,
+		"name": "Mika (Swimsuit)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 8,
+		"item": {
+			"love": [5005, 5106, 5034],
+			"liked": [5006, 5007, 5102]
+		}
+	},
+	{
+		"id": 10123,
+		"name": "Seia (Swimsuit)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5011, 5034, 5112, 5023, 5018, 5032, 5029, 5003, 5009, 5004, 5015, 5028, 5101],
+			"liked": []
+		}
+	},
+	{
+		"id": 10124,
+		"name": "Hasumi (Swimsuit)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5026, 5104, 5034],
+			"liked": [5027, 5008, 5012, 5013]
+		}
+	},
+	{
+		"id": 10129,
+		"name": "Suzumi (Magical)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5002, 5006, 5106],
+			"liked": [5005, 5011, 5105, 5014, 5100, 5007, 5102, 5000, 5030]
+		}
+	},
+	{
+		"id": 13003,
+		"name": "Hasumi",
+		"school": "Trinity",
+		"rarity": 2,
+		"live2d_lvl": 8,
+		"item": {
+			"love": [5026],
+			"liked": [5027, 5008, 5012, 5013, 5104]
+		}
+	},
+	{
+		"id": 16003,
+		"name": "Suzumi",
+		"school": "Trinity",
+		"rarity": 1,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5110, 5020],
+			"liked": []
+		}
+	},
+	{
+		"id": 16005,
+		"name": "Tsurugi (Swimsuit)",
+		"school": "Trinity",
+		"rarity": 1,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5003, 5106, 5034],
+			"liked": []
+		}
+	},
+	{
+		"id": 16011,
+		"name": "Hasumi (Track)",
+		"school": "Trinity",
+		"rarity": 1,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5026, 5104],
+			"liked": [5027, 5008, 5012, 5013]
+		}
+	},
+	{
+		"id": 16013,
+		"name": "Koharu (Swimsuit)",
+		"school": "Trinity",
+		"rarity": 1,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5003, 5102, 5034],
+			"liked": [5009]
+		}
+	},
+	{
+		"id": 16015,
+		"name": "Airi (Band)",
+		"school": "Trinity",
+		"rarity": 1,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5026, 5008, 5104],
+			"liked": [5031, 5012, 5013]
+		}
+	},
+	{
+		"id": 16016,
+		"name": "Mine (Pop Idol)",
+		"school": "Trinity",
+		"rarity": 1,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5005, 5106, 5020, 5000],
+			"liked": [5006, 5007, 5001, 5102]
+		}
+	},
+	{
+		"id": 16018,
+		"name": "Rabu",
+		"school": "Trinity",
+		"rarity": 1,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5001, 5111],
+			"liked": [5017, 5029, 5026, 5008, 5012, 5013, 5104, 5103, 5016, 5030, 5019]
+		}
+	},
+	{
+		"id": 20003,
+		"name": "Mashiro",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 8,
+		"item": {
+			"love": [5007, 5107],
+			"liked": [5012]
+		}
+	},
+	{
+		"id": 20004,
+		"name": "Mashiro (Swimsuit)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5012, 5107, 5034],
+			"liked": [5007]
+		}
+	},
+	{
+		"id": 20005,
+		"name": "Hifumi (Swimsuit)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5001, 5103, 5034],
+			"liked": [5000]
+		}
+	},
+	{
+		"id": 20021,
+		"name": "Hanae (Christmas)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5016, 5111],
+			"liked": [5033, 5107, 5001]
+		}
+	},
+	{
+		"id": 20024,
+		"name": "Nagisa",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5103, 5030],
+			"liked": [5017, 5029, 5008, 5019]
+		}
+	},
+	{
+		"id": 20028,
+		"name": "Hinata (Swimsuit)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5024, 5109, 5034],
+			"liked": [5031]
+		}
+	},
+	{
+		"id": 20048,
+		"name": "Nagisa (Swimsuit)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5100, 5008, 5034],
+			"liked": [5017, 5029, 5103, 5030, 5019]
+		}
+	},
+	{
+		"id": 20051,
+		"name": "Reisa (Magical)",
+		"school": "Trinity",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [
+				5004, 5101, 5022, 5010, 5025, 5023, 5018, 5032, 5003, 5011, 5009, 5015, 5026, 5008, 5012,
+				5013, 5104, 5016, 5020, 5112
+			],
+			"liked": []
+		}
+	},
+	{
+		"id": 23000,
+		"name": "Airi",
+		"school": "Trinity",
+		"rarity": 2,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5008],
+			"liked": [5026, 5012, 5013, 5104]
+		}
+	},
+	{
+		"id": 23002,
+		"name": "Hanae",
+		"school": "Trinity",
+		"rarity": 2,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5006],
+			"liked": [5005, 5007, 5102]
+		}
+	},
+	{
+		"id": 23007,
+		"name": "Hanako",
+		"school": "Trinity",
+		"rarity": 2,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5003, 5019],
+			"liked": [5023, 5032, 5009, 5004, 5015, 5101]
+		}
+	},
+	{
+		"id": 23008,
+		"name": "Mari",
+		"school": "Trinity",
+		"rarity": 2,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5031],
+			"liked": [5108, 5028]
+		}
+	},
+	{
+		"id": 26003,
+		"name": "Serina",
+		"school": "Trinity",
+		"rarity": 1,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5014, 5107, 5102],
+			"liked": []
+		}
+	},
+	{
+		"id": 26004,
+		"name": "Shimiko",
+		"school": "Trinity",
+		"rarity": 1,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5015, 5023, 5032, 5003, 5009, 5004, 5101],
+			"liked": []
+		}
+	}
+]

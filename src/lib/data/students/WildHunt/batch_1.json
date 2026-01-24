@@ -1,0 +1,57 @@
+[
+	{
+		"id": 10125,
+		"name": "Eri",
+		"school": "WildHunt",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5022, 5017, 5103],
+			"liked": [5029, 5030, 5019]
+		}
+	},
+	{
+		"id": 10126,
+		"name": "Kanoe",
+		"school": "WildHunt",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5002, 5003, 5102],
+			"liked": [5023, 5032, 5009, 5004, 5015, 5101]
+		}
+	},
+	{
+		"id": 10127,
+		"name": "Miyo",
+		"school": "WildHunt",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5015, 5101, 5017, 5023, 5032, 5029, 5003, 5009, 5004, 5103, 5030, 5019],
+			"liked": []
+		}
+	},
+	{
+		"id": 10128,
+		"name": "Fuyu",
+		"school": "WildHunt",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5021, 5102],
+			"liked": [5005, 5006, 5007]
+		}
+	},
+	{
+		"id": 20050,
+		"name": "Ritsu",
+		"school": "WildHunt",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5018, 5108],
+			"liked": [5022, 5010, 5025, 5029, 5028, 5020, 5112]
+		}
+	}
+]

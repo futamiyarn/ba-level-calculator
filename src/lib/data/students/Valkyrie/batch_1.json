@@ -1,0 +1,68 @@
+[
+	{
+		"id": 10096,
+		"name": "Kanna (Swimsuit)",
+		"school": "Valkyrie",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5015, 5101, 5034, 5023, 5032, 5003, 5009, 5004],
+			"liked": []
+		}
+	},
+	{
+		"id": 13012,
+		"name": "Kirino",
+		"school": "Valkyrie",
+		"rarity": 2,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5031, 5104],
+			"liked": [5008]
+		}
+	},
+	{
+		"id": 16008,
+		"name": "Fubuki",
+		"school": "Valkyrie",
+		"rarity": 1,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5008],
+			"liked": [5026, 5012, 5013, 5104]
+		}
+	},
+	{
+		"id": 20023,
+		"name": "Kanna",
+		"school": "Valkyrie",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5033, 5107],
+			"liked": [5032]
+		}
+	},
+	{
+		"id": 20037,
+		"name": "Fubuki (Swimsuit)",
+		"school": "Valkyrie",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5008, 5013, 5104, 5034],
+			"liked": [5011, 5004, 5026, 5012, 5016]
+		}
+	},
+	{
+		"id": 26012,
+		"name": "Kirino (Swimsuit)",
+		"school": "Valkyrie",
+		"rarity": 1,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5016, 5034, 5111],
+			"liked": [5008, 5001]
+		}
+	}
+]

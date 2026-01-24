@@ -1,0 +1,552 @@
+[
+	{
+		"id": 10001,
+		"name": "Eimi",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5030],
+			"liked": [5002, 5017, 5029, 5103, 5019]
+		}
+	},
+	{
+		"id": 10007,
+		"name": "Maki",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 8,
+		"item": {
+			"love": [5022],
+			"liked": [5010, 5025, 5018, 5020, 5112]
+		}
+	},
+	{
+		"id": 10008,
+		"name": "Neru",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 8,
+		"item": {
+			"love": [5018],
+			"liked": [5022, 5010, 5025, 5020, 5112]
+		}
+	},
+	{
+		"id": 10012,
+		"name": "Sumire",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5016],
+			"liked": [5001, 5111]
+		}
+	},
+	{
+		"id": 10015,
+		"name": "Aris",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 8,
+		"item": {
+			"love": [5004, 5112],
+			"liked": [5011, 5016]
+		}
+	},
+	{
+		"id": 10016,
+		"name": "Midori",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5014, 5112],
+			"liked": []
+		}
+	},
+	{
+		"id": 10018,
+		"name": "Yuzu",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 8,
+		"item": {
+			"love": [5011],
+			"liked": [5002, 5004, 5105, 5016]
+		}
+	},
+	{
+		"id": 10026,
+		"name": "Neru (Bunny)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5011, 5112],
+			"liked": [5004, 5016]
+		}
+	},
+	{
+		"id": 10027,
+		"name": "Karin (Bunny)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5109, 5020],
+			"liked": []
+		}
+	},
+	{
+		"id": 10028,
+		"name": "Asuna (Bunny)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5026, 5102],
+			"liked": [5008, 5012, 5013, 5104]
+		}
+	},
+	{
+		"id": 10051,
+		"name": "Utaha (Cheer Squad)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5010, 5105],
+			"liked": [5002, 5011]
+		}
+	},
+	{
+		"id": 10052,
+		"name": "Noa",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5023, 5032, 5003, 5009, 5004, 5015, 5101],
+			"liked": []
+		}
+	},
+	{
+		"id": 10053,
+		"name": "Yuuka (Track)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5025],
+			"liked": []
+		}
+	},
+	{
+		"id": 10062,
+		"name": "Toki",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5001, 5111],
+			"liked": [5032, 5033, 5016]
+		}
+	},
+	{
+		"id": 10063,
+		"name": "Koyuki",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 8,
+		"item": {
+			"love": [5025, 5112, 5019],
+			"liked": [5022, 5010, 5018, 5020]
+		}
+	},
+	{
+		"id": 10066,
+		"name": "Aris (Maid)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5025, 5004, 5106, 5112],
+			"liked": [5022, 5010, 5018, 5031, 5011, 5016, 5020]
+		}
+	},
+	{
+		"id": 10067,
+		"name": "Toki (Bunny)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5001, 5109, 5111],
+			"liked": [5032, 5033, 5016]
+		}
+	},
+	{
+		"id": 10076,
+		"name": "Kotori (Cheer Squad)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5032, 5111],
+			"liked": [5025, 5033, 5001, 5016]
+		}
+	},
+	{
+		"id": 10084,
+		"name": "Kotama (Camp)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5105, 5020],
+			"liked": [5022, 5010, 5025, 5018, 5112]
+		}
+	},
+	{
+		"id": 10085,
+		"name": "Hare (Camp)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5004, 5105],
+			"liked": [5011, 5016]
+		}
+	},
+	{
+		"id": 10094,
+		"name": "Momoi (Maid)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5011, 5112],
+			"liked": [5004, 5014, 5100, 5016, 5000]
+		}
+	},
+	{
+		"id": 10095,
+		"name": "Midori (Maid)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5024, 5109],
+			"liked": [5011, 5004, 5016]
+		}
+	},
+	{
+		"id": 10108,
+		"name": "Yuuka (Pajamas)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5100, 5000],
+			"liked": [5002, 5005, 5011, 5006, 5105, 5014, 5007, 5102]
+		}
+	},
+	{
+		"id": 10109,
+		"name": "Noa (Pajamas)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5023, 5100, 5005, 5032, 5003, 5006, 5009, 5004, 5014, 5015, 5007, 5102, 5101, 5000],
+			"liked": []
+		}
+	},
+	{
+		"id": 10111,
+		"name": "Neru (School)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5018, 5112],
+			"liked": [5022, 5010, 5025, 5029, 5011, 5004, 5028, 5016, 5020]
+		}
+	},
+	{
+		"id": 10112,
+		"name": "Asuna (School)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5005, 5006, 5102],
+			"liked": [5007]
+		}
+	},
+	{
+		"id": 10115,
+		"name": "Rei",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5105],
+			"liked": [5002, 5017, 5011]
+		}
+	},
+	{
+		"id": 10133,
+		"name": "Rio (Armed)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5010, 5105],
+			"liked": [5002, 5018, 5029, 5011, 5028, 5019]
+		}
+	},
+	{
+		"id": 13000,
+		"name": "Akane",
+		"school": "Millennium",
+		"rarity": 2,
+		"live2d_lvl": 9,
+		"item": {
+			"love": [5024],
+			"liked": [5109]
+		}
+	},
+	{
+		"id": 13010,
+		"name": "Yuuka",
+		"school": "Millennium",
+		"rarity": 2,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5025, 5105, 5107],
+			"liked": []
+		}
+	},
+	{
+		"id": 13011,
+		"name": "Momoi",
+		"school": "Millennium",
+		"rarity": 2,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5011, 5112],
+			"liked": [5004, 5016]
+		}
+	},
+	{
+		"id": 16001,
+		"name": "Asuna",
+		"school": "Millennium",
+		"rarity": 1,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5005, 5104],
+			"liked": [5006, 5007, 5102]
+		}
+	},
+	{
+		"id": 16002,
+		"name": "Kotori",
+		"school": "Millennium",
+		"rarity": 1,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5032, 5105, 5023, 5003, 5009, 5033, 5004, 5015, 5101],
+			"liked": []
+		}
+	},
+	{
+		"id": 16010,
+		"name": "Hibiki (Cheer Squad)",
+		"school": "Millennium",
+		"rarity": 1,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5002, 5109],
+			"liked": [5024, 5011, 5105, 5030]
+		}
+	},
+	{
+		"id": 16019,
+		"name": "Toki (Armed)",
+		"school": "Millennium",
+		"rarity": 1,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5011, 5021, 5112],
+			"liked": [5002, 5018, 5029, 5004, 5105, 5028, 5016]
+		}
+	},
+	{
+		"id": 20000,
+		"name": "Hibiki",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 9,
+		"item": {
+			"love": [5002],
+			"liked": [5011, 5105]
+		}
+	},
+	{
+		"id": 20001,
+		"name": "Karin",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 9,
+		"item": {
+			"love": [5025, 5109],
+			"liked": []
+		}
+	},
+	{
+		"id": 20013,
+		"name": "Chihiro",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5002],
+			"liked": [5011, 5105, 5030]
+		}
+	},
+	{
+		"id": 20019,
+		"name": "Akane (Bunny)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5024, 5109],
+			"liked": []
+		}
+	},
+	{
+		"id": 20020,
+		"name": "Himari",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5103, 5019],
+			"liked": [5017, 5029, 5030]
+		}
+	},
+	{
+		"id": 20032,
+		"name": "Eimi (Swimsuit)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5034, 5030],
+			"liked": [5002, 5017, 5029, 5103, 5019]
+		}
+	},
+	{
+		"id": 20041,
+		"name": "Rio",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5010, 5105],
+			"liked": [5002, 5018, 5029, 5011, 5028]
+		}
+	},
+	{
+		"id": 20042,
+		"name": "Maki (Camp)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5022, 5011, 5106],
+			"liked": [5002, 5004, 5105, 5016]
+		}
+	},
+	{
+		"id": 20044,
+		"name": "Sumire (Part-Timer)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5107, 5016],
+			"liked": [5033, 5001, 5111]
+		}
+	},
+	{
+		"id": 20054,
+		"name": "Himari (Armed)",
+		"school": "Millennium",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5103, 5019],
+			"liked": [5017, 5032, 5029, 5033, 5030]
+		}
+	},
+	{
+		"id": 23003,
+		"name": "Hare",
+		"school": "Millennium",
+		"rarity": 2,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5004, 5105],
+			"liked": [5011, 5016]
+		}
+	},
+	{
+		"id": 23004,
+		"name": "Utaha",
+		"school": "Millennium",
+		"rarity": 2,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5010, 5105],
+			"liked": []
+		}
+	},
+	{
+		"id": 26001,
+		"name": "Kotama",
+		"school": "Millennium",
+		"rarity": 1,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5020],
+			"liked": [5022, 5010, 5025, 5018, 5112]
+		}
+	},
+	{
+		"id": 26009,
+		"name": "Yuzu (Maid)",
+		"school": "Millennium",
+		"rarity": 1,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5011, 5105],
+			"liked": [5002, 5004, 5016]
+		}
+	},
+	{
+		"id": 26014,
+		"name": "Karin (School)",
+		"school": "Millennium",
+		"rarity": 1,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5024, 5109, 5031, 5003],
+			"liked": []
+		}
+	}
+]

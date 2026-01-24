@@ -1,0 +1,475 @@
+[
+	{
+		"id": 10000,
+		"name": "Aru",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5017],
+			"liked": [5029, 5103, 5030, 5019]
+		}
+	},
+	{
+		"id": 10002,
+		"name": "Haruna",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5031, 5110],
+			"liked": []
+		}
+	},
+	{
+		"id": 10004,
+		"name": "Hina",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 8,
+		"item": {
+			"love": [5102, 5019],
+			"liked": []
+		}
+	},
+	{
+		"id": 10006,
+		"name": "Iori",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5012],
+			"liked": [5026, 5008, 5013, 5007, 5104]
+		}
+	},
+	{
+		"id": 10009,
+		"name": "Izumi",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5013],
+			"liked": [5026, 5008, 5012, 5104]
+		}
+	},
+	{
+		"id": 10022,
+		"name": "Hina (Swimsuit)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5102, 5034, 5019],
+			"liked": []
+		}
+	},
+	{
+		"id": 10023,
+		"name": "Iori (Swimsuit)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5012, 5034],
+			"liked": [5026, 5008, 5013, 5007, 5104]
+		}
+	},
+	{
+		"id": 10060,
+		"name": "Megu",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5018, 5112],
+			"liked": [5022, 5010, 5025, 5029, 5028, 5020]
+		}
+	},
+	{
+		"id": 10030,
+		"name": "Chinatsu (Hot Spring)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5009, 5030, 5017, 5023, 5032, 5029, 5003, 5004, 5015, 5103, 5101, 5019],
+			"liked": []
+		}
+	},
+	{
+		"id": 10031,
+		"name": "Aru (New Year)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5017],
+			"liked": [5029, 5103, 5030, 5019]
+		}
+	},
+	{
+		"id": 10032,
+		"name": "Mutsuki (New Year)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5018],
+			"liked": [5022, 5010, 5025, 5029, 5028, 5020, 5112]
+		}
+	},
+	{
+		"id": 10057,
+		"name": "Haruna (New Year)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5031, 5008, 5110],
+			"liked": []
+		}
+	},
+	{
+		"id": 10064,
+		"name": "Kayoko (New Year)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5002, 5031, 5110],
+			"liked": [5011, 5105, 5106, 5030]
+		}
+	},
+	{
+		"id": 10078,
+		"name": "Kasumi",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5017, 5105],
+			"liked": [5010, 5019]
+		}
+	},
+	{
+		"id": 10086,
+		"name": "Hina (Dress)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5021, 5110, 5019],
+			"liked": [5027]
+		}
+	},
+	{
+		"id": 10087,
+		"name": "Ako (Dress)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5033, 5015, 5107],
+			"liked": [5017, 5032, 5029, 5103, 5030, 5019]
+		}
+	},
+	{
+		"id": 10088,
+		"name": "Kayoko (Dress)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5002, 5105, 5030],
+			"liked": [5011]
+		}
+	},
+	{
+		"id": 10089,
+		"name": "Aru (Dress)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5017, 5029, 5103, 5019],
+			"liked": [5030]
+		}
+	},
+	{
+		"id": 10093,
+		"name": "Kirara",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5005, 5006, 5102, 5106],
+			"liked": [5031, 5007]
+		}
+	},
+	{
+		"id": 10107,
+		"name": "Chiaki",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5023, 5105, 5032, 5003, 5009, 5004, 5015, 5101, 5019],
+			"liked": []
+		}
+	},
+	{
+		"id": 10113,
+		"name": "Sena (Casual)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5033, 5107],
+			"liked": [5018, 5032, 5029, 5028]
+		}
+	},
+	{
+		"id": 10114,
+		"name": "Juri (Part-Timer)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5031, 5104],
+			"liked": [5005, 5024]
+		}
+	},
+	{
+		"id": 13002,
+		"name": "Akari",
+		"school": "Gehenna",
+		"rarity": 2,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5027, 5104],
+			"liked": [5026]
+		}
+	},
+	{
+		"id": 13005,
+		"name": "Kayoko",
+		"school": "Gehenna",
+		"rarity": 2,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5002],
+			"liked": [5011, 5105, 5030]
+		}
+	},
+	{
+		"id": 13006,
+		"name": "Mutsuki",
+		"school": "Gehenna",
+		"rarity": 2,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5018],
+			"liked": [5022, 5010, 5025, 5029, 5028, 5020, 5112]
+		}
+	},
+	{
+		"id": 13007,
+		"name": "Junko",
+		"school": "Gehenna",
+		"rarity": 2,
+		"live2d_lvl": 8,
+		"item": {
+			"love": [5008],
+			"liked": [5026, 5012, 5013, 5104]
+		}
+	},
+	{
+		"id": 16000,
+		"name": "Haruka",
+		"school": "Gehenna",
+		"rarity": 1,
+		"live2d_lvl": 8,
+		"item": {
+			"love": [5028],
+			"liked": [5018, 5029, 5108]
+		}
+	},
+	{
+		"id": 16006,
+		"name": "Izumi (Swimsuit)",
+		"school": "Gehenna",
+		"rarity": 1,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5013, 5034],
+			"liked": [5026, 5008, 5012, 5104]
+		}
+	},
+	{
+		"id": 16012,
+		"name": "Junko (New Year)",
+		"school": "Gehenna",
+		"rarity": 1,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5008, 5104],
+			"liked": [5026, 5012, 5013]
+		}
+	},
+	{
+		"id": 16014,
+		"name": "Ibuki",
+		"school": "Gehenna",
+		"rarity": 1,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5022, 5008, 5104, 5020, 5112],
+			"liked": [5010, 5025, 5018, 5026, 5012, 5013]
+		}
+	},
+	{
+		"id": 20008,
+		"name": "Ako",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5033],
+			"liked": [5017, 5032, 5029, 5103, 5030, 5019]
+		}
+	},
+	{
+		"id": 20012,
+		"name": "Sena",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5107, 5000],
+			"liked": [5032, 5033, 5014, 5100]
+		}
+	},
+	{
+		"id": 20016,
+		"name": "Iroha",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5004, 5023, 5032, 5003, 5011, 5009, 5015, 5016, 5101],
+			"liked": []
+		}
+	},
+	{
+		"id": 20022,
+		"name": "Fuuka (New Year)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5024, 5033, 5107],
+			"liked": [5109]
+		}
+	},
+	{
+		"id": 20025,
+		"name": "Haruka (New Year)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5108, 5028],
+			"liked": [5018, 5029]
+		}
+	},
+	{
+		"id": 20030,
+		"name": "Haruna (Track)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5008, 5104],
+			"liked": [5026, 5012, 5013, 5001, 5016, 5111]
+		}
+	},
+	{
+		"id": 20033,
+		"name": "Makoto",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5017, 5029, 5103, 5019],
+			"liked": [5018, 5028, 5030]
+		}
+	},
+	{
+		"id": 20034,
+		"name": "Akari (New Year)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5027, 5104],
+			"liked": [5026]
+		}
+	},
+	{
+		"id": 20040,
+		"name": "Satsuki",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5032, 5103, 5023, 5003, 5009, 5033, 5004, 5015, 5101, 5019],
+			"liked": []
+		}
+	},
+	{
+		"id": 20043,
+		"name": "Izumi (New Year)",
+		"school": "Gehenna",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5013],
+			"liked": [5026, 5008, 5012, 5104]
+		}
+	},
+	{
+		"id": 23001,
+		"name": "Fuuka",
+		"school": "Gehenna",
+		"rarity": 2,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5024],
+			"liked": [5109]
+		}
+	},
+	{
+		"id": 26000,
+		"name": "Chinatsu",
+		"school": "Gehenna",
+		"rarity": 1,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5009, 5103, 5023, 5032, 5003, 5004, 5015, 5101],
+			"liked": []
+		}
+	},
+	{
+		"id": 26002,
+		"name": "Juri",
+		"school": "Gehenna",
+		"rarity": 1,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5022, 5107],
+			"liked": []
+		}
+	}
+]

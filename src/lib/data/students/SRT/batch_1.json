@@ -1,0 +1,90 @@
+[
+	{
+		"id": 10038,
+		"name": "Miyako",
+		"school": "SRT",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5009, 5105],
+			"liked": [5012, 5007]
+		}
+	},
+	{
+		"id": 10039,
+		"name": "Miyu",
+		"school": "SRT",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5031, 5106],
+			"liked": [5012, 5007]
+		}
+	},
+	{
+		"id": 10071,
+		"name": "Miyako (Swimsuit)",
+		"school": "SRT",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5009, 5100, 5034],
+			"liked": [5012, 5007]
+		}
+	},
+	{
+		"id": 10072,
+		"name": "Saki (Swimsuit)",
+		"school": "SRT",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5007, 5107, 5034],
+			"liked": [5017, 5032, 5029, 5033, 5012, 5103, 5030, 5019]
+		}
+	},
+	{
+		"id": 10097,
+		"name": "Moe (Swimsuit)",
+		"school": "SRT",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5105, 5034],
+			"liked": [5002, 5018, 5029, 5011, 5012, 5007, 5028]
+		}
+	},
+	{
+		"id": 20014,
+		"name": "Saki",
+		"school": "SRT",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5007],
+			"liked": [5017, 5032, 5029, 5033, 5012, 5103, 5030, 5019]
+		}
+	},
+	{
+		"id": 20018,
+		"name": "Moe",
+		"school": "SRT",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5002],
+			"liked": [5011, 5105, 5012, 5007]
+		}
+	},
+	{
+		"id": 26010,
+		"name": "Miyu (Swimsuit)",
+		"school": "SRT",
+		"rarity": 1,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5031, 5106, 5034],
+			"liked": [5012, 5007]
+		}
+	}
+]

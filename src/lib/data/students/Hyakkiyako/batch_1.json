@@ -1,0 +1,321 @@
+[
+	{
+		"id": 10014,
+		"name": "Izuna",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5031],
+			"liked": [5106]
+		}
+	},
+	{
+		"id": 10033,
+		"name": "Wakamo",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5106, 5020],
+			"liked": []
+		}
+	},
+	{
+		"id": 10034,
+		"name": "Mimori",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5024, 5031],
+			"liked": [5109, 5106]
+		}
+	},
+	{
+		"id": 10040,
+		"name": "Tsukuyo",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5028],
+			"liked": [5018, 5029, 5108]
+		}
+	},
+	{
+		"id": 10043,
+		"name": "Wakamo (Swimsuit)",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5106, 5034, 5020],
+			"liked": []
+		}
+	},
+	{
+		"id": 10046,
+		"name": "Izuna (Swimsuit)",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5031, 5034],
+			"liked": [5106]
+		}
+	},
+	{
+		"id": 10047,
+		"name": "Chise (Swimsuit)",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5023, 5034, 5032, 5003, 5009, 5004, 5015, 5101],
+			"liked": []
+		}
+	},
+	{
+		"id": 10065,
+		"name": "Kaho",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5023, 5101, 5032, 5003, 5009, 5004, 5015],
+			"liked": []
+		}
+	},
+	{
+		"id": 10081,
+		"name": "Yukari",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5031, 5106],
+			"liked": [5026, 5008, 5012, 5013, 5104]
+		}
+	},
+	{
+		"id": 10082,
+		"name": "Renge",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5024, 5003, 5021, 5109],
+			"liked": [5027, 5110]
+		}
+	},
+	{
+		"id": 10083,
+		"name": "Kikyou",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5023, 5032, 5009, 5015, 5101, 5003, 5033, 5004],
+			"liked": []
+		}
+	},
+	{
+		"id": 10090,
+		"name": "Umika",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5018, 5112],
+			"liked": [5022, 5010, 5025, 5029, 5028, 5020]
+		}
+	},
+	{
+		"id": 10119,
+		"name": "Nagusa",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5023, 5106],
+			"liked": [5031, 5006, 5026, 5008, 5012, 5013, 5104]
+		}
+	},
+	{
+		"id": 10121,
+		"name": "Yukari (Swimsuit)",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5031, 5106, 5034],
+			"liked": [5026, 5008, 5012, 5013, 5104]
+		}
+	},
+	{
+		"id": 10132,
+		"name": "Tsukuyo (Dress)",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5006, 5102],
+			"liked": [5005, 5018, 5031, 5029, 5007, 5028, 5106]
+		}
+	},
+	{
+		"id": 13001,
+		"name": "Chise",
+		"school": "Hyakkiyako",
+		"rarity": 2,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5023, 5032, 5003, 5009, 5004, 5015, 5101],
+			"liked": []
+		}
+	},
+	{
+		"id": 13009,
+		"name": "Tsubaki",
+		"school": "Hyakkiyako",
+		"rarity": 2,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5108, 5000],
+			"liked": [5014, 5100]
+		}
+	},
+	{
+		"id": 13014,
+		"name": "Renge (Swimsuit)",
+		"school": "Hyakkiyako",
+		"rarity": 2,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5003, 5109, 5034],
+			"liked": [5023, 5024, 5032, 5009, 5004, 5015, 5101]
+		}
+	},
+	{
+		"id": 16004,
+		"name": "Pina",
+		"school": "Hyakkiyako",
+		"rarity": 1,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5021, 5109],
+			"liked": []
+		}
+	},
+	{
+		"id": 16009,
+		"name": "Michiru",
+		"school": "Hyakkiyako",
+		"rarity": 1,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5017],
+			"liked": [5029, 5103, 5030, 5019]
+		}
+	},
+	{
+		"id": 20015,
+		"name": "Kaede",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5018],
+			"liked": [5022, 5010, 5025, 5029, 5011, 5004, 5028, 5016, 5020, 5112]
+		}
+	},
+	{
+		"id": 20029,
+		"name": "Mimori (Swimsuit)",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5023, 5109, 5034, 5005, 5024, 5032, 5003, 5006, 5009, 5004, 5015, 5007, 5102, 5101],
+			"liked": []
+		}
+	},
+	{
+		"id": 20035,
+		"name": "Tsubaki (Guide)",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5100, 5000, 5023, 5032, 5003, 5009, 5004, 5014, 5015, 5101],
+			"liked": []
+		}
+	},
+	{
+		"id": 20045,
+		"name": "Pina (Guide)",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5021, 5101, 5023, 5032, 5003, 5009, 5004, 5015, 5027, 5110],
+			"liked": []
+		}
+	},
+	{
+		"id": 20046,
+		"name": "Niya",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5018, 5029, 5108, 5003],
+			"liked": [5022, 5010, 5025, 5017, 5028, 5103, 5020, 5112, 5030, 5019]
+		}
+	},
+	{
+		"id": 20047,
+		"name": "Kikyou (Swimsuit)",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5032, 5009, 5101, 5034, 5023, 5003, 5033, 5004, 5015],
+			"liked": []
+		}
+	},
+	{
+		"id": 20053,
+		"name": "Michiru (Dress)",
+		"school": "Hyakkiyako",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5017, 5106],
+			"liked": [5018, 5031, 5029, 5028]
+		}
+	},
+	{
+		"id": 23006,
+		"name": "Shizuko",
+		"school": "Hyakkiyako",
+		"rarity": 2,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5033],
+			"liked": [5107]
+		}
+	},
+	{
+		"id": 26008,
+		"name": "Shizuko (Swimsuit)",
+		"school": "Hyakkiyako",
+		"rarity": 1,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5033, 5034],
+			"liked": [5107]
+		}
+	}
+]

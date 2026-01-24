@@ -1,0 +1,101 @@
+[
+	{
+		"id": 10011,
+		"name": "Shun",
+		"school": "Shanhaijing",
+		"rarity": 3,
+		"live2d_lvl": 9,
+		"item": {
+			"love": [5006],
+			"liked": [5005, 5007, 5102]
+		}
+	},
+	{
+		"id": 10025,
+		"name": "Shun (Small)",
+		"school": "Shanhaijing",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5008],
+			"liked": [5026, 5012, 5013, 5104, 5020]
+		}
+	},
+	{
+		"id": 10050,
+		"name": "Kokona",
+		"school": "Shanhaijing",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5008, 5104],
+			"liked": [5026, 5012, 5013]
+		}
+	},
+	{
+		"id": 10069,
+		"name": "Rumi",
+		"school": "Shanhaijing",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5024, 5031, 5106],
+			"liked": []
+		}
+	},
+	{
+		"id": 10070,
+		"name": "Mina",
+		"school": "Shanhaijing",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5029, 5103, 5030],
+			"liked": [5017, 5018, 5028, 5019]
+		}
+	},
+	{
+		"id": 10104,
+		"name": "Reijo",
+		"school": "Shanhaijing",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5033, 5111],
+			"liked": [5017, 5001, 5016]
+		}
+	},
+	{
+		"id": 20002,
+		"name": "Saya",
+		"school": "Shanhaijing",
+		"rarity": 3,
+		"live2d_lvl": 8,
+		"item": {
+			"love": [5033],
+			"liked": [5032, 5107]
+		}
+	},
+	{
+		"id": 20006,
+		"name": "Saya (Casual)",
+		"school": "Shanhaijing",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5018, 5107],
+			"liked": [5029, 5008, 5028]
+		}
+	},
+	{
+		"id": 20039,
+		"name": "Kisaki",
+		"school": "Shanhaijing",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5024, 5108, 5023, 5018, 5032, 5029, 5003, 5009, 5004, 5015, 5028, 5101],
+			"liked": []
+		}
+	}
+]

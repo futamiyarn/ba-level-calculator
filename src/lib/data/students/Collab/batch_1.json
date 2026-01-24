@@ -1,0 +1,46 @@
+[
+	{
+		"id": 10079,
+		"name": "Misaka Mikoto",
+		"school": "Tokiwadai",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [],
+			"liked": []
+		}
+	},
+	{
+		"id": 10080,
+		"name": "Shokuhou Misaki",
+		"school": "Tokiwadai",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [],
+			"liked": []
+		}
+	},
+	{
+		"id": 20007,
+		"name": "Hatsune Miku",
+		"school": "ETC",
+		"rarity": 3,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [],
+			"liked": []
+		}
+	},
+	{
+		"id": 26011,
+		"name": "Saten Ruiko",
+		"school": "Sakugawa",
+		"rarity": 1,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [],
+			"liked": []
+		}
+	}
+]

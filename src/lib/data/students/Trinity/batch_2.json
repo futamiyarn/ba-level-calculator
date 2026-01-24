@@ -1,0 +1,24 @@
+[
+	{
+		"id": 26005,
+		"name": "Yoshimi",
+		"school": "Trinity",
+		"rarity": 1,
+		"live2d_lvl": 6,
+		"item": {
+			"love": [5008],
+			"liked": [5026, 5012, 5013, 5104]
+		}
+	},
+	{
+		"id": 26015,
+		"name": "Ichika (Swimsuit)",
+		"school": "Trinity",
+		"rarity": 1,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5005, 5102, 5034],
+			"liked": [5002, 5011, 5006, 5105, 5007]
+		}
+	}
+]

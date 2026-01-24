@@ -1,14 +1,16 @@
 <script>
 	import { CreditCard, Zap } from 'lucide-svelte';
+	import Card from '$lib/components/ui/Card.svelte';
+	import CardHeader from '$lib/components/ui/CardHeader.svelte';
+	import CurrencyBadge from '$lib/components/ui/CurrencyBadge.svelte';
+
 	export let config;
 </script>
 
-<section class="rounded-[24px] border border-slate-200 bg-white p-1 shadow-sm">
-	<div
-		class="flex items-center gap-2 px-5 py-3 text-[10px] font-bold tracking-widest text-slate-700 uppercase"
-	>
+<Card>
+	<CardHeader color="text-slate-700">
 		<CreditCard size={12} /> Paid Services
-	</div>
+	</CardHeader>
 
 	<div class="flex flex-col pb-2">
 		<div
@@ -31,20 +33,7 @@
 			<div
 				class={`ml-8 flex items-center gap-1 transition-opacity sm:ml-0 ${config.twoWeekPack ? 'opacity-100' : 'opacity-40 grayscale'}`}
 			>
-				<div
-					class={`flex items-center gap-1 rounded-md border px-2 py-0.5 ${config.twoWeekPack ? 'border-emerald-100 bg-emerald-50' : 'border-slate-100 bg-slate-50'}`}
-				>
-					<Zap
-						size={10}
-						class={config.twoWeekPack
-							? 'fill-emerald-500 text-emerald-500'
-							: 'fill-slate-400 text-slate-400'}
-					/>
-					<span
-						class={`text-xs font-bold ${config.twoWeekPack ? 'text-emerald-700' : 'text-slate-500'}`}
-						>150</span
-					>
-				</div>
+				<CurrencyBadge icon={Zap} value={150} type={config.twoWeekPack ? 'emerald' : 'default'} />
 			</div>
 		</div>
 
@@ -54,4 +43,4 @@
 			</p>
 		</div>
 	</div>
-</section>
+</Card>

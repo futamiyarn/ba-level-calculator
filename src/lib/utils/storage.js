@@ -1,6 +1,7 @@
 // Constants
 const STORAGE_KEY_DATA = 'ba_planner_data';
 const STORAGE_KEY_CONFIG = 'ba_planner_config';
+const STORAGE_KEY_FILTERS = 'ba_student_list_filters';
 const STORAGE_KEY_LIMIT = 'ba_scan_usage_v4';
 const STORAGE_KEY_INFO_SEEN = 'ba_info_modal_seen';
 
@@ -17,6 +18,42 @@ export const storage = {
 	loadUserData: () => {
 		if (typeof localStorage === 'undefined') return null;
 		const raw = localStorage.getItem(STORAGE_KEY_DATA);
+		return raw ? JSON.parse(raw) : null;
+	},
+
+	// Student List Filters
+	saveStudentFilters: (filters) => {
+		if (typeof localStorage === 'undefined') return;
+		localStorage.setItem(STORAGE_KEY_FILTERS, JSON.stringify(filters));
+	},
+
+	loadStudentFilters: () => {
+		if (typeof localStorage === 'undefined') return null;
+		const raw = localStorage.getItem(STORAGE_KEY_FILTERS);
+		return raw ? JSON.parse(raw) : null;
+	},
+
+	// Relationship Calculator Filters
+	saveRelationshipFilters: (filters) => {
+		if (typeof localStorage === 'undefined') return;
+		localStorage.setItem('ba_relationship_filters', JSON.stringify(filters));
+	},
+
+	loadRelationshipFilters: () => {
+		if (typeof localStorage === 'undefined') return null;
+		const raw = localStorage.getItem('ba_relationship_filters');
+		return raw ? JSON.parse(raw) : null;
+	},
+
+	// Selected Student Persistence
+	saveSelectedStudent: (studentId) => {
+		if (typeof localStorage === 'undefined') return;
+		localStorage.setItem('ba_selected_student', JSON.stringify(studentId));
+	},
+
+	loadSelectedStudent: () => {
+		if (typeof localStorage === 'undefined') return null;
+		const raw = localStorage.getItem('ba_selected_student');
 		return raw ? JSON.parse(raw) : null;
 	},
 

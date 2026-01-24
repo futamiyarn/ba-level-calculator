@@ -1,0 +1,167 @@
+[
+	{
+		"id": 10005,
+		"name": "Hoshino",
+		"school": "Abydos",
+		"rarity": 3,
+		"live2d_lvl": 9,
+		"item": {
+			"love": [5017, 5100, 5103],
+			"liked": []
+		}
+	},
+	{
+		"id": 10010,
+		"name": "Shiroko",
+		"school": "Abydos",
+		"rarity": 3,
+		"live2d_lvl": 9,
+		"item": {
+			"love": [5001],
+			"liked": [5016, 5111]
+		}
+	},
+	{
+		"id": 10024,
+		"name": "Shiroko (Cycling)",
+		"school": "Abydos",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5017],
+			"liked": [5001, 5016, 5111]
+		}
+	},
+	{
+		"id": 10044,
+		"name": "Nonomi (Swimsuit)",
+		"school": "Abydos",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5005, 5034],
+			"liked": [5006, 5007, 5102]
+		}
+	},
+	{
+		"id": 10045,
+		"name": "Hoshino (Swimsuit)",
+		"school": "Abydos",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5017, 5100, 5103, 5034],
+			"liked": []
+		}
+	},
+	{
+		"id": 10098,
+		"name": "Hoshino (Armed)",
+		"school": "Abydos",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5017, 5100, 5012, 5007],
+			"liked": [5029, 5103, 5030, 5019]
+		}
+	},
+	{
+		"id": 10099,
+		"name": "Hoshino (Armed)",
+		"school": "Abydos",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5017, 5100, 5012, 5007],
+			"liked": [5029, 5103, 5030, 5019]
+		}
+	},
+	{
+		"id": 10100,
+		"name": "Shiroko*Terror",
+		"school": "Abydos",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5001],
+			"liked": [5016, 5111]
+		}
+	},
+	{
+		"id": 13004,
+		"name": "Nonomi",
+		"school": "Abydos",
+		"rarity": 2,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5005],
+			"liked": [5006, 5007, 5102]
+		}
+	},
+	{
+		"id": 13008,
+		"name": "Serika",
+		"school": "Abydos",
+		"rarity": 2,
+		"live2d_lvl": 9,
+		"item": {
+			"love": [5029],
+			"liked": [5017, 5103, 5030, 5019]
+		}
+	},
+	{
+		"id": 20011,
+		"name": "Serika (New Year)",
+		"school": "Abydos",
+		"rarity": 3,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5029],
+			"liked": [5017, 5103, 5030, 5019]
+		}
+	},
+	{
+		"id": 20027,
+		"name": "Shiroko (Swimsuit)",
+		"school": "Abydos",
+		"rarity": 3,
+		"live2d_lvl": 2,
+		"item": {
+			"love": [5001, 5034, 5111],
+			"liked": [5016]
+		}
+	},
+	{
+		"id": 20036,
+		"name": "Serika (Swimsuit)",
+		"school": "Abydos",
+		"rarity": 3,
+		"live2d_lvl": 3,
+		"item": {
+			"love": [5029, 5103, 5034],
+			"liked": [5017, 5031, 5030, 5019]
+		}
+	},
+	{
+		"id": 23005,
+		"name": "Ayane",
+		"school": "Abydos",
+		"rarity": 2,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5009, 5023, 5032, 5003, 5004, 5015, 5101],
+			"liked": []
+		}
+	},
+	{
+		"id": 26007,
+		"name": "Ayane (Swimsuit)",
+		"school": "Abydos",
+		"rarity": 1,
+		"live2d_lvl": 5,
+		"item": {
+			"love": [5009, 5105, 5034, 5023, 5032, 5003, 5004, 5015, 5101],
+			"liked": []
+		}
+	}
+]

@@ -1,13 +1,21 @@
 import gameData from '$lib/data/game_data.json';
 
-// Get Required EXP
+/**
+ * Retrieves the experience points required to level up from a specific level.
+ * @param {number} lv - The current level.
+ * @returns {number} The required EXP amount.
+ */
 export const getRequiredExp = (lv) => {
 	if (lv >= 90) return 0;
 	const exp = gameData.exp_table[lv.toString()];
 	return exp || 0;
 };
 
-// Get Base AP
+/**
+ * Calculates the base AP (Stamina) capacity for a given level.
+ * @param {number} lv - The current level.
+ * @returns {number} The base AP capacity.
+ */
 export const getBaseAP = (lv) => {
 	const level = parseInt(lv) || 1;
 	if (level <= 20) {
@@ -17,7 +25,12 @@ export const getBaseAP = (lv) => {
 	}
 };
 
-// Get Boost Multiplier
+/**
+ * Returns the experience boost multiplier based on the current level.
+ * Newer players get a boost to catch up.
+ * @param {number} lv - The current level.
+ * @returns {number} The boost multiplier (e.g., 2.0, 1.5).
+ */
 export const getBoostMultiplier = (lv) => {
 	if (lv <= 20) return 2.0;
 	if (lv <= 40) return 1.5;
@@ -25,7 +38,13 @@ export const getBoostMultiplier = (lv) => {
 	return 1.0;
 };
 
-// Calculate Daily AP
+/**
+ * Calculates the total daily AP generated based on user configuration and level.
+ * Includes natural generation, tasks, bonuses, and refreshes.
+ * @param {Object} config - User's AP configuration.
+ * @param {number} currentLv - User's current level.
+ * @returns {number} Total estimated daily AP.
+ */
 export const calculateDailyAP = (config, currentLv) => {
 	let ap = getBaseAP(currentLv);
 
@@ -48,7 +67,15 @@ export const calculateDailyAP = (config, currentLv) => {
 	return Math.floor(ap);
 };
 
-// Calculate Days to Target
+/**
+ * Estimates the number of days and total EXP needed to reach a target level.
+ * Accounts for increasing AP capacity as level increases.
+ * @param {number} currentLv - Starting level.
+ * @param {number|string} currentExp - Current EXP points in current level.
+ * @param {number} targetLv - Desired target level.
+ * @param {number} startDailyAP - Initial daily AP at current level.
+ * @returns {Object} Object containing estimated days and total EXP needed.
+ */
 export const calculateDaysToTarget = (currentLv, currentExp, targetLv, startDailyAP) => {
 	if (currentLv >= targetLv || startDailyAP <= 0) return { days: 0, expNeeded: 0 };
 
@@ -79,13 +106,22 @@ export const calculateDaysToTarget = (currentLv, currentExp, targetLv, startDail
 		totalDays += daysForLevel;
 	}
 
+	const totalDaysCeil = Math.ceil(totalDays);
+
 	return {
 		expNeeded: totalExpNeeded,
-		days: Math.ceil(totalDays)
+		days: totalDaysCeil
 	};
 };
 
-// Calculate Expert Permit
+/**
+ * Calculates weekly Expert Permit income.
+ * Expert Permits are earned after reaching max level via AP spending and tasks.
+ * @param {number} lv - Current level.
+ * @param {Object} config - User configuration.
+ * @param {number} dailyAP - Daily AP amount.
+ * @returns {Object} Detailed breakdown of Expert Permit income.
+ */
 export const calculateExpertPermit = (lv, config, dailyAP) => {
 	const isMaxed = lv >= 90;
 
@@ -114,7 +150,14 @@ export const calculateExpertPermit = (lv, config, dailyAP) => {
 	};
 };
 
-// Calculate Hoarding Strategy EXP (Weekly + 2x Weekend)
+/**
+ * Calculates total EXP gain per week when utilizing a "hoarding" strategy.
+ * Hoarding involves saving certain AP bonuses for double drop/EXP events (usually weekends).
+ * @param {Object} config - User configuration.
+ * @param {number} dailyAP - Daily AP amount.
+ * @param {number} boostMultiplier - Current EXP boost multiplier.
+ * @returns {number} Total estimated weekly EXP with hoarding.
+ */
 export const calculateHoardingExp = (config, dailyAP, boostMultiplier) => {
 	// Identify hoardable daily AP components (already included in dailyAP)
 	// Club (10), Login (55), WeeklyTask (50 avg)
