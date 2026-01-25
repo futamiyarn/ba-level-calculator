@@ -17,6 +17,12 @@ export async function POST({ request, platform }) {
 		}
 
 		const image = formData.get('image');
+
+		if (!image || !(image instanceof File)) {
+			return json({ error: 'No image uploaded' }, { status: 400 });
+		}
+
+		const arrayBuffer = await image.arrayBuffer();
 		const uint8Array = new Uint8Array(arrayBuffer);
 		const imageArray = [...uint8Array];
 
