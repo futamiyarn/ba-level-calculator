@@ -9,5 +9,8 @@
 		"PUBLIC_CLOUDFLARE_SITE_KEY": "0x4AAAAAACNSTF3CS-SyrZQI",
 		"PUBLIC_DOUBLE_EXP_INTERVAL_WEEKS": "2",
 		"PUBLIC_DEV_MODE": "false"
+	},
+	"ai": {
+		"binding": "AI"
 	}
 }

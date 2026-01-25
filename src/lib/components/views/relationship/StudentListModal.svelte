@@ -1,6 +1,6 @@
 <script>
 	import { createEventDispatcher, onMount } from 'svelte';
-	import { X, Filter } from 'lucide-svelte';
+	import { X, Filter, Star } from 'lucide-svelte';
 	import { slide } from 'svelte/transition';
 	import Tooltip from '$lib/components/ui/Tooltip.svelte';
 	import Modal from '$lib/components/ui/Modal.svelte';
@@ -60,6 +60,19 @@
 	function loadMore() {
 		if (limit < filteredStudents.length) {
 			limit += 20;
+		}
+	}
+
+	function getRarityColor(rarity) {
+		switch (rarity) {
+			case 3:
+				return 'bg-purple-500'; // 3 Star
+			case 2:
+				return 'bg-yellow-500'; // 2 Star
+			case 1:
+				return 'bg-blue-400'; // 1 Star (Light Blue/Cyan)
+			default:
+				return 'bg-slate-500';
 		}
 	}
 </script>
@@ -138,17 +151,26 @@
 				>
 					<Tooltip text={student.name}>
 						<div class="relative">
-							<img
-								src="https://schaledb.com/images/student/icon/{student.id}.webp"
-								alt={student.name}
-								class="h-14 w-14 rounded-full border-2 border-white object-cover shadow-sm"
-								loading="lazy"
-							/>
+							<div
+								class="h-14 w-14 overflow-hidden rounded-full border-2 border-white/10 p-0.5 {getRarityColor(
+									student.rarity
+								)} shadow-sm"
+							>
+								<img
+									src="https://schaledb.com/images/student/icon/{student.id}.webp"
+									alt={student.name}
+									class="h-full w-full rounded-full object-cover"
+									loading="lazy"
+								/>
+							</div>
 
 							<div
-								class="absolute -right-1 -bottom-1 flex h-5 w-5 items-center justify-center rounded-full border border-white bg-yellow-100 text-[9px] font-bold text-yellow-700 shadow-sm"
+								class="absolute -right-1 -bottom-1 flex h-5 w-5 items-center justify-center gap-0.5 rounded-full border border-white font-bold text-white shadow-sm {getRarityColor(
+									student.rarity
+								)}"
 							>
-								{student.rarity}★
+								<span class="text-[9px]">{student.rarity}</span>
+								<Star size={7} class="fill-white text-white" />
 							</div>
 						</div>
 					</Tooltip>

@@ -193,6 +193,9 @@ async function run() {
 	const collabNames = ['Hatsune Miku', 'Misaka Mikoto', 'Shokuhou Misaki', 'Saten Ruiko'];
 
 	for (const s of students) {
+		// Skip duplicate Hoshino (Armed)
+		if (s.Id === 10099) continue;
+
 		let school = s.School || 'Unknown';
 		if (collabNames.includes(s.Name)) {
 			school = 'Collab';

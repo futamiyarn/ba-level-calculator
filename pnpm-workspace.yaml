@@ -1,5 +1,6 @@
 onlyBuiltDependencies:
   - esbuild
-  - sharp
-  - workerd
   - protobufjs
+  - sharp
+  - tesseract.js
+  - workerd

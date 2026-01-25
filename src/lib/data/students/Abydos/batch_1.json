@@ -66,17 +66,6 @@
 		}
 	},
 	{
-		"id": 10099,
-		"name": "Hoshino (Armed)",
-		"school": "Abydos",
-		"rarity": 3,
-		"live2d_lvl": 3,
-		"item": {
-			"love": [5017, 5100, 5012, 5007],
-			"liked": [5029, 5103, 5030, 5019]
-		}
-	},
-	{
 		"id": 10100,
 		"name": "Shiroko*Terror",
 		"school": "Abydos",
