@@ -1,11 +1,32 @@
 <script>
-	import { createEventDispatcher } from 'svelte';
-	import { User, School, Star } from 'lucide-svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
+	import { User, School, Star, Pin } from 'lucide-svelte';
 	import HeroCard from '$lib/components/ui/HeroCard.svelte';
+	import { storage } from '$lib/utils/storage';
 
 	export let student;
 
 	const dispatch = createEventDispatcher();
+	let pinnedIds = [];
+
+	onMount(() => {
+		pinnedIds = storage.loadPinnedStudents();
+	});
+
+	$: if (student) {
+		pinnedIds = storage.loadPinnedStudents();
+	}
+
+	$: isPinned = pinnedIds.includes(student?.id);
+
+	function togglePin() {
+		if (isPinned) {
+			pinnedIds = pinnedIds.filter((id) => id !== student.id);
+		} else {
+			pinnedIds = [...pinnedIds, student.id];
+		}
+		storage.savePinnedStudents(pinnedIds);
+	}
 
 	function openModal() {
 		dispatch('change');
@@ -93,13 +114,23 @@
 
 				<h2 class="mb-4 text-3xl font-bold tracking-tight">{student.name}</h2>
 
-				<div class="flex justify-center sm:justify-start">
+				<div class="flex items-center justify-center gap-2 sm:justify-start">
 					<button
 						class="flex items-center gap-2 rounded-full bg-white px-5 py-2 text-xs font-bold text-slate-900 shadow-sm transition-transform hover:scale-105 hover:bg-cyan-50 hover:shadow-md active:scale-95"
 						on:click={openModal}
 					>
 						<User size={14} />
 						<span>Change Student</span>
+					</button>
+
+					<button
+						class="flex h-8 w-8 items-center justify-center rounded-full border shadow-sm transition-all hover:scale-110 active:scale-95 {isPinned
+							? 'border-pink-200 bg-pink-50 text-pink-500'
+							: 'border-slate-200 bg-white text-slate-400 hover:text-slate-600'}"
+						on:click={togglePin}
+						title={isPinned ? 'Unpin' : 'Pin'}
+					>
+						<Pin size={16} class={isPinned ? 'fill-current' : ''} />
 					</button>
 				</div>
 			</div>

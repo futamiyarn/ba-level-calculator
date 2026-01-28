@@ -1,6 +1,6 @@
 <script>
 	import { createEventDispatcher, onMount } from 'svelte';
-	import { X, Filter, Star } from 'lucide-svelte';
+	import { X, Filter, Pin } from 'lucide-svelte';
 	import { slide } from 'svelte/transition';
 	import Tooltip from '$lib/components/ui/Tooltip.svelte';
 	import Modal from '$lib/components/ui/Modal.svelte';
@@ -14,10 +14,12 @@
 
 	// Filter State
 	let showFilters = false;
+	let showPinnedOnly = false;
 	let searchTerm = '';
 	let selectedSchool = 'All';
 	let selectedRarity = 'All';
 	let isLoaded = false;
+	let pinnedIds = [];
 
 	onMount(() => {
 		const saved = storage.loadStudentFilters();
@@ -25,32 +27,45 @@
 			selectedSchool = saved.selectedSchool ?? 'All';
 			selectedRarity = saved.selectedRarity ?? 'All';
 		}
+		pinnedIds = storage.loadPinnedStudents();
 		isLoaded = true;
 	});
 
 	// Save filters whenever they change, but only after loading
 	$: {
-		// Ensure we are in the browser and have loaded initial data
 		if (typeof window !== 'undefined' && isLoaded) {
 			storage.saveStudentFilters({ selectedSchool, selectedRarity });
 		}
+	}
+
+	function togglePin(e, studentId) {
+		e.stopPropagation();
+		if (pinnedIds.includes(studentId)) {
+			pinnedIds = pinnedIds.filter((id) => id !== studentId);
+		} else {
+			pinnedIds = [...pinnedIds, studentId];
+		}
+		storage.savePinnedStudents(pinnedIds);
 	}
 
 	// Extract unique schools for the dropdown, sorted alphabetically
 	$: uniqueSchools = ['All', ...[...new Set(students.map((s) => s.school).filter(Boolean))].sort()];
 
 	// Reactive filtering logic
-	$: filteredStudents = students.filter((s) => {
-		const matchSchool = selectedSchool === 'All' || s.school === selectedSchool;
-		// Rarity might be number or string in JSON, ensure type safety
-		const matchRarity =
-			selectedRarity === 'All' || (s.rarity && s.rarity.toString() === selectedRarity.toString());
-		const matchName = searchTerm === '' || s.name.toLowerCase().includes(searchTerm.toLowerCase());
-		return matchSchool && matchRarity && matchName;
-	});
+	$: filteredStudents = students
+		.filter((s) => {
+			const matchSchool = selectedSchool === 'All' || s.school === selectedSchool;
+			const matchRarity =
+				selectedRarity === 'All' || (s.rarity && s.rarity.toString() === selectedRarity.toString());
+			const matchName =
+				searchTerm === '' || s.name.toLowerCase().includes(searchTerm.toLowerCase());
+			const matchPinned = !showPinnedOnly || pinnedIds.includes(s.id);
+			return matchSchool && matchRarity && matchName && matchPinned;
+		})
+		.sort((a, b) => a.id - b.id);
 
 	// Reset limit when filters change
-	$: if (selectedSchool || selectedRarity || searchTerm) {
+	$: if (selectedSchool || selectedRarity || searchTerm || showPinnedOnly) {
 		limit = 30;
 	}
 
@@ -99,6 +114,17 @@
 					</button>
 				{/if}
 			</div>
+
+			<button
+				on:click={() => (showPinnedOnly = !showPinnedOnly)}
+				class="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 transition-all {showPinnedOnly
+					? 'border-pink-200 bg-pink-50 text-pink-500'
+					: 'bg-slate-50 text-slate-400 hover:bg-slate-100'}"
+				title="Show Pinned Only"
+			>
+				<Pin size={20} class={showPinnedOnly ? 'fill-current' : ''} />
+			</button>
+
 			<button
 				on:click={() => (showFilters = !showFilters)}
 				class="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 transition-all {showFilters
@@ -146,7 +172,7 @@
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<!-- svelte-ignore a11y-no-static-element-interactions -->
 				<div
-					class="flex cursor-pointer flex-col items-center gap-2 rounded-xl border border-slate-100 bg-slate-50 p-3 text-center transition-all hover:bg-slate-100 hover:shadow-md"
+					class="group relative flex cursor-pointer flex-col items-center gap-2 rounded-xl border border-slate-100 bg-slate-50 p-3 text-center transition-all hover:bg-slate-100 hover:shadow-md"
 					on:click={() => dispatch('select', student)}
 				>
 					<Tooltip text={student.name}>
@@ -164,17 +190,19 @@
 								/>
 							</div>
 
-							<div
-								class="absolute -right-1 -bottom-1 flex h-5 w-5 items-center justify-center gap-0.5 rounded-full border border-white font-bold text-white shadow-sm {getRarityColor(
-									student.rarity
-								)}"
+							<button
+								class="absolute -right-1 -bottom-1 flex h-6 w-6 items-center justify-center rounded-full border border-slate-100 bg-white shadow-sm transition-all hover:scale-110 active:scale-95 {pinnedIds.includes(
+									student.id
+								)
+									? 'border-pink-100 text-pink-500'
+									: 'text-slate-300 hover:text-slate-400'}"
+								on:click={(e) => togglePin(e, student.id)}
+								title={pinnedIds.includes(student.id) ? 'Unpin' : 'Pin'}
 							>
-								<span class="text-[9px]">{student.rarity}</span>
-								<Star size={7} class="fill-white text-white" />
-							</div>
+								<Pin size={12} class={pinnedIds.includes(student.id) ? 'fill-current' : ''} />
+							</button>
 						</div>
 					</Tooltip>
-
 					<div class="w-full">
 						<div class="line-clamp-2 text-xs font-bold text-slate-800">
 							{student.name}

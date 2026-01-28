@@ -57,6 +57,18 @@ export const storage = {
 		return raw ? JSON.parse(raw) : null;
 	},
 
+	// Pinned Students
+	savePinnedStudents: (pinnedIds) => {
+		if (typeof localStorage === 'undefined') return;
+		localStorage.setItem('ba_pinned_students', JSON.stringify(pinnedIds));
+	},
+
+	loadPinnedStudents: () => {
+		if (typeof localStorage === 'undefined') return [];
+		const raw = localStorage.getItem('ba_pinned_students');
+		return raw ? JSON.parse(raw) : [];
+	},
+
 	// User Config
 	saveUserConfig: (config) => {
 		if (typeof localStorage === 'undefined') return;

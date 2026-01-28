@@ -79,7 +79,7 @@ export async function load() {
 			};
 		});
 
-		// Standardize student sorting by ID
+		// Standardize student sorting by ID (Ascending - Starting from 1)
 		localStudents.sort((a, b) => (a.id || 0) - (b.id || 0));
 
 		// Identify the 10 most recently added students for quick access

@@ -11,13 +11,14 @@ const OUTPUT_DIR = path.join(process.cwd(), 'src/lib/data/students');
 const GIFT_FILE = path.join(process.cwd(), 'src/lib/data/gift.json');
 
 // --- GIFT MAPPING SETUP ---
+if (!fs.existsSync(GIFT_FILE)) {
+	console.error(`GIFT_FILE not found at ${GIFT_FILE}`);
+	process.exit(1);
+}
 const giftData = JSON.parse(fs.readFileSync(GIFT_FILE, 'utf-8'));
 const giftMap = new Map();
-
-// Helper: Normalize strings for key lookup
 const normalize = (str) => str.toLowerCase().replace(/[^a-z0-9]/g, '');
 
-// Populate map with primary names and aliases -> ID
 giftData.items.forEach((g) => {
 	giftMap.set(normalize(g.name), g.id);
 	if (g.alias && Array.isArray(g.alias)) {
@@ -27,11 +28,30 @@ giftData.items.forEach((g) => {
 
 function getGiftId(name) {
 	if (!name) return null;
+	if (typeof name === 'number') return name;
 	const norm = normalize(name);
 	return giftMap.get(norm) || null;
 }
 
-// --- STUDENT NAME NORMALIZATION ---
+// --- NORMALIZATION ---
+/**
+ * Normalizes school names to match folder structure.
+ * Handles typos like "milenimilenium" or variations.
+ */
+function normalizeSchoolName(name) {
+	if (!name) return 'Unknown';
+	const fixes = {
+		milenimilenium: 'Millennium',
+		millenium: 'Millennium',
+		'millennium science school': 'Millennium'
+	};
+	const norm = name.trim();
+	return fixes[norm.toLowerCase()] || norm;
+}
+
+/**
+ * Maps game names to wiki-friendly names and normalizes suffixes.
+ */
 function normalizeWikiName(text) {
 	const typeMapping = {
 		track: 'Sportswear',
@@ -89,7 +109,6 @@ const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 async function fetchWikiContent(studentName) {
 	const wikiName = normalizeWikiName(studentName).replace(/\s+/g, '_');
 	const url = `https://bluearchive.wiki/wiki/${wikiName}`;
-	console.log(`  Fetching Wiki: ${url}`);
 
 	try {
 		const { data } = await axios.get(url, {
@@ -100,12 +119,12 @@ async function fetchWikiContent(studentName) {
 		});
 		return data;
 	} catch (e) {
-		console.error(`  [Error] Wiki Fetch Error: ${e.message}`);
+		console.error(`    [Error] Wiki Fetch Error for ${studentName}: ${e.message}`);
 		return null;
 	}
 }
 
-// --- CHEERIO EXTRACTION ---
+// --- DATA EXTRACTION ---
 function extractStudentData(html, studentName) {
 	const $ = cheerio.load(html);
 	const data = {
@@ -113,69 +132,50 @@ function extractStudentData(html, studentName) {
 		gifts: { loved: [], liked: [] }
 	};
 
-	// 1. Extract Gifts
+	// Gifts extraction
 	const giftHeader = $('#Gifts');
 	if (giftHeader.length) {
 		let container = giftHeader.parent().hasClass('mw-heading') ? giftHeader.parent() : giftHeader;
 		let current = container.next();
-		let currentMode = null; // 'loved' | 'liked'
+		let currentMode = null;
 
 		while (current.length && !current.is('h1, h2, h3, .mw-heading')) {
 			const text = current.text().toLowerCase();
-
-			if (text.includes('favorite') || text.includes('love')) {
-				currentMode = 'loved';
-			} else if (text.includes('like')) {
-				currentMode = 'liked';
-			}
+			if (text.includes('favorite') || text.includes('love')) currentMode = 'loved';
+			else if (text.includes('like')) currentMode = 'liked';
 
 			if (currentMode) {
-				const gifts = current.find('.character-gift');
-				gifts.each((_, el) => {
+				current.find('.character-gift').each((_, el) => {
 					const name = $(el).find('a').last().text().trim() || $(el).text().trim();
-					if (name) {
-						data.gifts[currentMode].push(name);
-					}
+					if (name) data.gifts[currentMode].push(name);
 				});
 			}
-
 			current = current.next();
 		}
 	}
 
-	// 2. Extract Memorial Lobby
+	// Memorial Lobby extraction
 	const memorialIcon = $('img[src*="Icon_memorial_lobby"]');
 	if (memorialIcon.length) {
 		const levelContainer = memorialIcon.closest('[data-level]');
 		if (levelContainer.length) {
 			data.memorial_lobby_unlock_level = parseInt(levelContainer.attr('data-level'), 10);
 		} else {
-			let container = memorialIcon.closest('tr');
-			if (!container.length) container = memorialIcon.closest('div, p');
-
-			const text = container.text();
+			const text = memorialIcon.closest('tr, div, p').text();
 			const match = text.match(/(?:Rank|Lvl|Level)?\s*(\d+)(?::)?/i);
-			if (match) {
-				data.memorial_lobby_unlock_level = parseInt(match[1], 10);
-			}
+			if (match) data.memorial_lobby_unlock_level = parseInt(match[1], 10);
 		}
 	}
 
 	return data;
 }
 
-// --- HELPER: CONVERT GIFTS ---
 function processGifts(studentName, giftNames, type) {
 	const ids = [];
 	for (const name of giftNames) {
-		if (typeof name === 'number') {
-			ids.push(name); // Already an ID
-			continue;
-		}
 		const id = getGiftId(name);
 		if (!id) {
 			console.error(`\n[CRITICAL] Unknown Gift (${type}) for ${studentName}: "${name}"`);
-			console.error('Please update src/lib/data/gift.json with this alias or name.');
 			process.exit(1);
 		}
 		ids.push(id);
@@ -183,147 +183,128 @@ function processGifts(studentName, giftNames, type) {
 	return ids;
 }
 
-// --- MAIN PROCESS ---
+// --- MAIN ---
 async function run() {
+	console.log('--- Blue Archive Student Data Sync ---');
+
+	// 1. Scan Existing Files to build a global ID set
+	console.log('Scanning existing student data...');
+	const existingIds = new Set();
+	if (fs.existsSync(OUTPUT_DIR)) {
+		const schools = fs.readdirSync(OUTPUT_DIR);
+		for (const school of schools) {
+			const schoolDir = path.join(OUTPUT_DIR, school);
+			if (!fs.lstatSync(schoolDir).isDirectory()) continue;
+			const files = fs.readdirSync(schoolDir).filter((f) => f.endsWith('.json'));
+			for (const f of files) {
+				try {
+					const data = JSON.parse(fs.readFileSync(path.join(schoolDir, f), 'utf-8'));
+					if (Array.isArray(data)) {
+						data.forEach((s) => existingIds.add(Number(s.id)));
+					}
+				} catch (e) {
+					console.error(`  [Error] Failed to read ${f}: ${e.message}`);
+				}
+			}
+		}
+	}
+	console.log(`Found ${existingIds.size} students in local files.`);
+
+	// 2. Fetch from MCP
 	console.log('Fetching student list from MCP...');
-	const students = await client.getStudents({ language: 'en', limit: 1000 });
+	const allStudentsFromApi = await client.getStudents({ language: 'en', limit: 1000 });
+	console.log(`API returned ${allStudentsFromApi.length} students.`);
 
-	// Group students by school
-	const studentsBySchool = {};
+	// 3. Filter New Students
 	const collabNames = ['Hatsune Miku', 'Misaka Mikoto', 'Shokuhou Misaki', 'Saten Ruiko'];
+	const collabSchools = ['Tokiwadai', 'Sakugawa', 'ETC'];
 
-	for (const s of students) {
-		// Skip duplicate Hoshino (Armed)
-		if (s.Id === 10099) continue;
+	const newStudents = allStudentsFromApi.filter((s) => {
+		if (s.Id === 10099) return false; // Skip duplicate Hoshino (Armed)
+		return !existingIds.has(Number(s.Id));
+	});
 
-		let school = s.School || 'Unknown';
-		if (collabNames.includes(s.Name)) {
+	if (newStudents.length === 0) {
+		console.log('No new students found in the API.');
+		console.log('All local data is up to date.');
+		return;
+	}
+
+	console.log(`Found ${newStudents.length} new students!`);
+
+	// 4. Group by School
+	const studentsBySchool = {};
+	for (const s of newStudents) {
+		let school = normalizeSchoolName(s.School);
+		// Remap collab students to a single folder
+		if (collabSchools.includes(school) || collabNames.some((cn) => s.Name.includes(cn))) {
 			school = 'Collab';
 		}
-
 		if (!studentsBySchool[school]) studentsBySchool[school] = [];
 		studentsBySchool[school].push(s);
 	}
 
+	// 5. Process and Save
 	for (const school of Object.keys(studentsBySchool)) {
-		console.log(`\n=== Processing School: ${school} ===`);
+		console.log(`\nProcessing school: ${school}`);
 		const schoolDir = path.join(OUTPUT_DIR, school);
 		if (!fs.existsSync(schoolDir)) fs.mkdirSync(schoolDir, { recursive: true });
 
-		const processedIds = new Set();
+		// Find the last batch file to resume or create a new one
+		const schoolFiles = fs
+			.readdirSync(schoolDir)
+			.filter((f) => f.match(/^batch_(\d+)\.json$/))
+			.sort((a, b) => parseInt(a.match(/(\d+)/)[1]) - parseInt(b.match(/(\d+)/)[1]));
+
 		let currentChunk = [];
 		let chunkIndex = 1;
 
-		// 1. PROCESS EXISTING FILES (Validation & Conversion)
-		if (fs.existsSync(schoolDir)) {
-			const files = fs
-				.readdirSync(schoolDir)
-				.filter((f) => f.match(/^batch_(\d+)\.json$/))
-				.sort((a, b) => {
-					const numA = parseInt(a.match(/(\d+)/)[1]);
-					const numB = parseInt(b.match(/(\d+)/)[1]);
-					return numA - numB;
-				});
-
-			for (const f of files) {
-				try {
-					const filePath = path.join(schoolDir, f);
-					let data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-					let modified = false;
-
-					if (Array.isArray(data)) {
-						data = data.map((student) => {
-							processedIds.add(Number(student.id));
-
-							// Convert Gifts to IDs
-							const loveIds = processGifts(student.name, student.item.love || [], 'Love');
-							const likedIds = processGifts(student.name, student.item.liked || [], 'Liked');
-
-							// Check if modification needed (compare processed vs original)
-							if (
-								JSON.stringify(loveIds) !== JSON.stringify(student.item.love) ||
-								JSON.stringify(likedIds) !== JSON.stringify(student.item.liked)
-							) {
-								modified = true;
-								student.item.love = loveIds;
-								student.item.liked = likedIds;
-							}
-							return student;
-						});
-
-						if (modified) {
-							console.log(`  [Update] Converting gifts to IDs in ${f}`);
-							fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
-						}
-
-						// Resume logic
-						if (f === files[files.length - 1]) {
-							if (data.length < 50) {
-								currentChunk = data;
-								chunkIndex = parseInt(f.match(/(\d+)/)[1]);
-								console.log(`  [Resuming] Batch ${chunkIndex} with ${currentChunk.length} items.`);
-							} else {
-								chunkIndex = parseInt(f.match(/(\d+)/)[1]) + 1;
-							}
-						}
-					}
-				} catch (e) {
-					console.error(`  [Error] Reading ${f}: ${e.message}`);
-				}
+		if (schoolFiles.length > 0) {
+			const lastFile = schoolFiles[schoolFiles.length - 1];
+			chunkIndex = parseInt(lastFile.match(/(\d+)/)[1]);
+			currentChunk = JSON.parse(fs.readFileSync(path.join(schoolDir, lastFile), 'utf-8'));
+			if (currentChunk.length >= 50) {
+				currentChunk = [];
+				chunkIndex++;
 			}
 		}
 
-		const schoolStudents = studentsBySchool[school];
-
-		// 2. FETCH MISSING STUDENTS
-		for (let i = 0; i < schoolStudents.length; i++) {
-			const student = schoolStudents[i];
-
-			if (processedIds.has(Number(student.Id))) {
+		for (const s of studentsBySchool[school]) {
+			console.log(`  [${s.Id}] ${s.Name}`);
+			const html = await fetchWikiContent(s.Name);
+			if (!html) {
+				console.log(`    Skipping: Wiki content not found.`);
 				continue;
 			}
 
-			console.log(`[${i + 1}/${schoolStudents.length}] ${student.Name}`);
+			await delay(1000); // Be kind to the wiki
 
-			const html = await fetchWikiContent(student.Name);
-			if (!html) continue;
-
-			await delay(1000); // Politeness delay
-
-			const extractedData = extractStudentData(html, student.Name);
-
-			// Convert & Validate immediately
-			const loveIds = processGifts(student.Name, extractedData.gifts.loved || [], 'Love');
-			const likedIds = processGifts(student.Name, extractedData.gifts.liked || [], 'Liked');
-
+			extracted = extractStudentData(html, s.Name);
 			const finalObj = {
-				id: student.Id,
-				name: student.Name,
-				school: student.School,
-				rarity: student.StarGrade,
-				live2d_lvl: extractedData.memorial_lobby_unlock_level,
+				id: s.Id,
+				name: s.Name,
+				school: s.School,
+				rarity: s.StarGrade,
+				live2d_lvl: extracted.memorial_lobby_unlock_level,
 				item: {
-					love: loveIds,
-					liked: likedIds
+					love: processGifts(s.Name, extracted.gifts.loved, 'Love'),
+					liked: processGifts(s.Name, extracted.gifts.liked, 'Liked')
 				}
 			};
 
-			console.log(
-				`  > Live2D: ${finalObj.live2d_lvl} | Loved: [${loveIds.length}] | Liked: [${likedIds.length}]`
-			);
 			currentChunk.push(finalObj);
-
 			const filename = path.join(schoolDir, `batch_${chunkIndex}.json`);
 			fs.writeFileSync(filename, JSON.stringify(currentChunk, null, 2));
 
 			if (currentChunk.length >= 50) {
-				console.log(`  [Batch Complete] ${filename}`);
+				console.log(`    Batch ${chunkIndex} complete. Creating next batch...`);
 				currentChunk = [];
 				chunkIndex++;
 			}
 		}
 	}
-	console.log('\nAll Done!');
+
+	console.log('\nAll data updated successfully!');
 }
 
 run();

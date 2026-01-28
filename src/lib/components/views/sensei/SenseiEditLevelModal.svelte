@@ -76,10 +76,6 @@
 	function onScan() {
 		// Update quota check
 		scanQuota = storage.checkScanQuota();
-		if (!scanQuota.allowed && !config.dev.isDev) {
-			alert('Daily scan limit reached (3/3). Please try again tomorrow or enter manually.');
-			return;
-		}
 		showScanModal = true;
 	}
 
@@ -91,8 +87,8 @@
 		if (level) editLv = parseInt(level);
 		if (exp_current !== undefined) editExp = exp_current;
 		showScanModal = false;
-		// Auto submit after scan? Optional. Let's keep it open for review.
-		// onOk();
+		// Auto submit after scan
+		onOk();
 	}
 
 	/**
@@ -156,8 +152,7 @@
 		<!-- SCAN (AI) -->
 		<button
 			on:click={onScan}
-			disabled={!scanQuota.allowed && !config.dev.isDev}
-			class="flex flex-col items-center justify-center gap-1 rounded-xl bg-slate-100 py-3 text-cyan-600 shadow-sm ring-1 ring-slate-200 transition-all hover:bg-cyan-50 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+			class="flex flex-col items-center justify-center gap-1 rounded-xl bg-slate-100 py-3 text-cyan-600 shadow-sm ring-1 ring-slate-200 transition-all hover:bg-cyan-50 active:scale-95"
 		>
 			<Scan size={20} />
 			<div class="flex flex-col items-center leading-none">
